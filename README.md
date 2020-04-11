@@ -2,7 +2,7 @@
 muh dotfiles duuuuh
 
 # Vim
-## Using Plug
+### Using Plug
 
 # Emacs
-## Using DOOM Emacs
+### Using DOOM Emacs
