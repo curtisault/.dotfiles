@@ -10,27 +10,38 @@ set nowrap
 set smartcase
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
-set undofile
 set incsearch
+set noshowmode
 
 set colorcolumn=160
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-" Plugin Search: https://vimawesome.com/
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
 
+" Plugin Search: https://vimawesome.com/
 call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
     Plug 'jremmen/vim-ripgrep'
     Plug 'tpope/vim-fugitive'
     Plug 'leafgarland/typescript-vim'
     Plug 'vim-utils/vim-man'
-    Plug 'kien/ctrlp.vim'
     Plug 'w0rp/ale'
     Plug 'vim-airline/vim-airline'
+    Plug 'tpope/vim-commentary'
     Plug 'racer-rust/vim-racer'
     Plug 'rust-lang/rust.vim'
-    Plug 'junegunn/fzf'
+    Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+    Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+    Plug 'sheerun/vim-polyglot'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+
+    " wiki and markdown tools
+    Plug 'vimwiki/vimwiki'
+    Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 call plug#end()
 
 colorscheme gruvbox
@@ -47,4 +58,5 @@ let g:netrw_browse_split=2
 let g:netrw_winsize=25
 let g:netrw_banner=0
 
-let g:ctrlp_use_caching=0
+let g:lightline = { 'colorscheme': 'wombat', }
+
