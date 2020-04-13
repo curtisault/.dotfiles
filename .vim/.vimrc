@@ -30,6 +30,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-utils/vim-man'
     Plug 'w0rp/ale'
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-commentary'
     Plug 'racer-rust/vim-racer'
     Plug 'rust-lang/rust.vim'
@@ -58,5 +59,5 @@ let g:netrw_browse_split=2
 let g:netrw_winsize=25
 let g:netrw_banner=0
 
-let g:lightline = { 'colorscheme': 'wombat', }
+let g:airline_theme='molokai'
 
