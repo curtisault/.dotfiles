@@ -1,0 +1,14 @@
+" nicities
+set surround
+set visualbells
+set noerrorbells
+let mapleader = " "
+
+" vim mappings
+nmap <leader>wh <c-w>h 
+nmap <leader>wl <c-w>l 
+nmap <leader>wk <c-w>k 
+nmap <leader>wj <c-w>j 
+
+" intelliJ mappings
+map <leader>wd :action Close<CR>
