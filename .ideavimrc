@@ -1,14 +1,27 @@
-" nicities
 set surround
 set visualbells
 set noerrorbells
 let mapleader = " "
 
-" vim mappings
-nmap <leader>wh <c-w>h 
-nmap <leader>wl <c-w>l 
-nmap <leader>wk <c-w>k 
-nmap <leader>wj <c-w>j 
+" Vim Mappings
 
-" intelliJ mappings
-map <leader>wd :action Close<CR>
+nmap <leader>wh <c-w>h
+nmap <leader>wl <c-w>l
+nmap <leader>wk <c-w>k
+nmap <leader>wj <c-w>j
+nmap <leader>wd <c-w>c
+nmap <leader>wv <c-w>v
+nmap <leader>ws <c-w>s
+
+" IntelliJ Mappings
+nmap <leader><tab> :action RecentFiles<CR>
+nmap <leader>ff :action SearchEverywhere<CR>
+nmap <leader>sp :action FindInPath<CR>
+nmap <leader>a :action $SelectAll<CR>
+nmap <leader>c :action $Copy<CR>
+nmap <leader>p :action $Paste<CR>
+nmap <leader>x :action $Cut<CR>
+map <leader>dd :action Debug<CR>
+map <leader>cd :action ChooseDebugConfiguration<CR>
+map <leader>rr :action Run<CR>
+map <leader>cr :action ChooseRunConfiguration<CR>
