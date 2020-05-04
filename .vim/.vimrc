@@ -61,12 +61,12 @@ set statusline=
 set statusline+=%#PmenuSel#
 set statusline+=%{StatuslineGit()}
 set statusline+=%#TabLineSel#
-set statusline+=\ %F
 set statusline+=\ %M
+set statusline+=\ %F
+set statusline+=\ [%{&fileformat}\]
 set statusline+=%= "Right side
 set statusline+=%#CursorLineNr#
 set statusline+=\ %y
-set statusline+=\ [%f]
 set statusline+=\ %p%%
 set statusline+=\ %c:%l
 
