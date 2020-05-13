@@ -12,6 +12,7 @@ nmap <leader>wj <c-w>j
 nmap <leader>wd <c-w>c
 nmap <leader>wv <c-w>v
 nmap <leader>ws <c-w>s
+nmap <leader>wc :close<cr>
 
 " IntelliJ Mappings
 nmap <leader><tab> :action RecentFiles<CR>
@@ -22,6 +23,8 @@ nmap <leader>c :action $Copy<CR>
 nmap <leader>p :action $Paste<CR>
 nmap <leader>x :action $Cut<CR>
 map <leader>dd :action Debug<CR>
+map <leader>gd :action GotoDeclaration<CR>
+map <leader>gi :action GotoImplementation<CR>
 map <leader>cd :action ChooseDebugConfiguration<CR>
 map <leader>rr :action Run<CR>
 map <leader>cr :action ChooseRunConfiguration<CR>
