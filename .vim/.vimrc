@@ -82,7 +82,12 @@ endif
 let mapleader = " "
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fb :Buffers<CR>
-nnoremap <leader>h  :help<CR>
+nnoremap <leader>hh :help<CR>
+nnoremap <leader>bb :vnew<CR>
+nnoremap <leader>nb :new<CR>
+nnoremap <leader>fq :q<CR>
+nnoremap <leader>fs :w<CR>
+nnoremap <leader>qq :qa<CR>
 
 " file browse
 let g:netrw_browse_split=2
