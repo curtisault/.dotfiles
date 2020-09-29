@@ -80,6 +80,9 @@ if executable('rg')
 endif
 
 let mapleader = " "
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>h  :help<CR>
 
 " file browse
 let g:netrw_browse_split=2
