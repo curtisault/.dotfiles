@@ -1,0 +1,25 @@
+#!/bin/bash
+while (inotifywait $HOME/Downloads -e close_write); do
+    if [[ $(ls $HOME/Documents/UtilReports | wc -l) -gt 0 ]]; then
+        echo 'Utilization files existed. They were removed.'
+    fi
+
+    if [[ $(ls $HOME/Documents/RewardsReports | wc -l) -gt 0 ]]; then
+        echo 'Rewards files existed. They were removed.'
+    fi
+
+    rm -rf $HOME/Documents/UtilReports/*
+    rm -rf $HOME/Documents/RewardsReports/*
+
+    mv $HOME/Downloads/UtilizationReport*.zip $HOME/Documents/UtilReports
+    mv $HOME/Downloads/RewardsSummary*.zip $HOME/Documents/RewardsReports
+
+    unzip -d $HOME/Documents/UtilReports/ $HOME/Documents/UtilReports/*.zip
+    chmod +rw $HOME/Documents/UtilReports/*
+
+    unzip -d $HOME/Documents/RewardsReports/ $HOME/Documents/RewardsReports/*.zip
+    chmod +rw $HOME/Documents/RewardsReports/*
+    unzip -d $HOME/Documents/RewardsReports/ $HOME/Documents/RewardsReports/2*.zip
+    chmod +rw $HOME/Documents/RewardsReports/*
+
+done
