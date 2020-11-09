@@ -1,0 +1,28 @@
+#!/bin/bash
+token=${token}
+pkg="jq"
+
+function decode {
+    jq -R 'split(".") | .[1] | @base64d | fromjson' <<< "$token"
+}
+
+function print_current {
+    echo "Current token value:\n$token\n";
+}
+
+if [[ $(dpkg-query -W -f='${Status}\n' $pkg) != 'install ok installed' ]]; then
+    dpkg-query -s $pkg
+    printf "\n"
+    echo "You need to install jq package: 'sudo apt install jq'"
+    exit 1
+fi
+
+if [[ $1 == '' && $token == '' ]]; then
+    printf "Token not set. \n"
+elif [[ $token != '' ]]; then
+    print_current
+    decode
+else
+    token=$1
+    decode
+fi
