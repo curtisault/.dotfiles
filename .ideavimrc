@@ -16,6 +16,7 @@ nmap <leader>wc :close<cr>
 
 " IntelliJ Mappings
 nmap <leader><tab> :action RecentFiles<CR>
+nmap <leader>fu :action FindUsages<CR>
 nmap <leader>ff :action SearchEverywhere<CR>
 nmap <leader>sp :action FindInPath<CR>
 nmap <leader>a :action $SelectAll<CR>
