@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'elixir-editors/vim-elixir'
     Plug 'slashmili/alchemist.vim'
+    Plug 'elmcast/elm-vim'
 
     " CoC
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -74,7 +75,8 @@ if executable('rg')
 endif
 
 let mapleader = " "
-nnoremap <leader>fc :Files<CR>
+" Editor Specific
+nnoremap <leader>ff :Files<CR>
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bd :bd<CR>
 nnoremap <leader>hh :help<CR>
@@ -90,6 +92,9 @@ nnoremap <leader>wl <c-w>l
 nnoremap <leader>wh <c-w>h
 nnoremap <leader>wk <c-w>k
 nnoremap <leader>wj <c-w>j
+
+" Language Specific
+nnoremap <leader>ef :ElmFormat<CR>
 
 " file browse
 let g:netrw_browse_split=2
