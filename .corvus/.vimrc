@@ -75,7 +75,7 @@ if executable('rg')
 endif
 
 let mapleader = " "
-" Editor Specific
+" Editor
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bd :bd<CR>
@@ -93,7 +93,7 @@ nnoremap <leader>wh <c-w>h
 nnoremap <leader>wk <c-w>k
 nnoremap <leader>wj <c-w>j
 
-" Language Specific
+" Language
 nnoremap <leader>ef :ElmFormat<CR>
 
 " file browse
