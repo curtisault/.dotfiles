@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
     Plug 'jremmen/vim-ripgrep'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-surround'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'elixir-editors/vim-elixir'
@@ -78,7 +79,7 @@ let mapleader = " "
 " Editor
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>bb :Buffers<CR>
-nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bd :bp\|bd #<CR>
 nnoremap <leader>hh :help<CR>
 nnoremap <leader>vb :vnew<CR>
 nnoremap <leader>hb :new<CR>
