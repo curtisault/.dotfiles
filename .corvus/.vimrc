@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'elixir-editors/vim-elixir'
     Plug 'slashmili/alchemist.vim'
     Plug 'elmcast/elm-vim'
+    Plug 'janko-m/vim-test'
 
     " CoC
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -96,6 +97,11 @@ nnoremap <leader>wj <c-w>j
 
 " Language
 nnoremap <leader>ef :ElmFormat<CR>
+
+" Test
+nnoremap <Leader>t :TestNearest<CR>
+nnoremap <Leader>T :TestFile<CR>
+nnoremap <Leader>l :TestLast<CR>
 
 " file browse
 let g:netrw_browse_split=2
