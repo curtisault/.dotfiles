@@ -8,7 +8,6 @@ endif
 
 " Plugin Search: https://vimawesome.com/
 call plug#begin('~/.vim/plugged')
-    Plug 'morhetz/gruvbox'
     Plug 'jremmen/vim-ripgrep'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
@@ -18,6 +17,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'slashmili/alchemist.vim'
     Plug 'elmcast/elm-vim'
     Plug 'janko-m/vim-test'
+
+    " Themes
+    Plug 'morhetz/gruvbox'
 
     " CoC
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -69,6 +71,7 @@ set statusline+=\ %c:%l
 
 
 " ------------------------------------ Colorscheme ------------------------------------ 
+set termguicolors
 colorscheme gruvbox
 set background=dark
 
@@ -78,16 +81,16 @@ endif
 
 let mapleader = " "
 " Editor
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>bb :Buffers<CR>
+nnoremap <silent><leader>ff :Files<CR>
+nnoremap <silent><leader>bb :Buffers<CR>
 nnoremap <leader>bd :bp\|bd #<CR>
-nnoremap <leader>hh :help<CR>
-nnoremap <leader>vb :vnew<CR>
-nnoremap <leader>hb :new<CR>
+nnoremap <silent><leader>hh :help<CR>
+nnoremap <silent><leader>vb :vnew<CR>
 nnoremap <leader>fq :q<CR>
 nnoremap <leader>fs :w<CR>
 nnoremap <leader>qq :qa<CR>
 nnoremap <leader>wd :close<CR>
+nnoremap <leader>wK :new<CR>
 nnoremap <leader>wJ :split<CR>
 nnoremap <leader>wL :vsplit<CR>
 nnoremap <leader>wl <c-w>l
@@ -102,6 +105,10 @@ nnoremap <leader>ef :ElmFormat<CR>
 nnoremap <Leader>t :TestNearest<CR>
 nnoremap <Leader>T :TestFile<CR>
 nnoremap <Leader>l :TestLast<CR>
+
+" coc completion navigation
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " file browse
 let g:netrw_browse_split=2
