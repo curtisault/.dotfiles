@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    Plug 'sharkdp/fd'
     Plug 'elixir-editors/vim-elixir'
     Plug 'slashmili/alchemist.vim'
     Plug 'elmcast/elm-vim'
@@ -43,6 +44,7 @@ set noswapfile
 set nobackup
 set incsearch
 set cursorline
+set autoread
 
 " ------------------------------------ Statusline ------------------------------------ 
 function! GitBranch()
@@ -83,20 +85,23 @@ let mapleader = " "
 " Editor
 nnoremap <silent><leader>ff :Files<CR>
 nnoremap <silent><leader>bb :Buffers<CR>
+nnoremap <silent><leader>] :bnext<CR>
+nnoremap <silent><leader>[ :bprevious<CR>
 nnoremap <leader>bd :bp\|bd #<CR>
-nnoremap <silent><leader>hh :help<CR>
-nnoremap <silent><leader>vb :vnew<CR>
 nnoremap <leader>fq :q<CR>
 nnoremap <leader>fs :w<CR>
 nnoremap <leader>qq :qa<CR>
 nnoremap <leader>wd :close<CR>
 nnoremap <leader>wK :new<CR>
-nnoremap <leader>wJ :split<CR>
-nnoremap <leader>wL :vsplit<CR>
+nnoremap <leader>wJ :sbprevious<CR>
+nnoremap <leader>wL :vert sbn<CR>
 nnoremap <leader>wl <c-w>l
 nnoremap <leader>wh <c-w>h
 nnoremap <leader>wk <c-w>k
 nnoremap <leader>wj <c-w>j
+
+" Git
+nnoremap <silent><leader>gb :Git blame<CR>
 
 " Language
 nnoremap <leader>ef :ElmFormat<CR>
