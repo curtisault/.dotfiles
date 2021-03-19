@@ -1,12 +1,14 @@
 ;; Minimal UI
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
+(setq initial-scratch-message ";; Happy Hacking")
 
+(menu-bar-mode    -1)
 (scroll-bar-mode  -1)
 (tool-bar-mode    -1)
 (tooltip-mode     -1)
 (global-linum-mode 1)
-(column-number-mode)
+(column-number-mode )
 
 ;; Fancy titlebar for MacOS
 
@@ -41,14 +43,18 @@
   :config 
   (evil-mode 1))
 
-(use-package doom-themes
-  :init (load-theme 'doom-gruvbox t))
+(use-package org-evil)
 
-(use-package doom-modeline
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 10)))
+(use-package doom-themes
+  :init (load-theme 'doom-vibrant t))
+
+
+(use-package counsel
+  :after ivy
+  :config (counsel-mode))
 
 (use-package ivy
+  :defer 0.1
   :diminish
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
@@ -63,8 +69,25 @@
          :map ivy-reverse-i-search-map
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
+  :custom
+  (ivy-count-format "(%d/%d) ")
+  (ivy-use-virtual-buffers t)
+  :config (ivy-mode))
+
+(use-package ivy-rich
+  :after ivy
+  :custom
+  (ivy-virtual-abbreviate 'full
+                          ivy-rich-switch-buffer-align-virtual-buffer t
+                          ivy-rich-path-style 'abbrev)
   :config
-  (ivy-mode 1))
+  (ivy-set-display-transformer 'ivy-switch-buffer
+                               'ivy-rich-switch-buffer-transformer))
+
+(use-package swiper
+  :after ivy
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -76,4 +99,38 @@
   :diminish which-key-mode
   :config
   (which-key-mode)
-  (setq which-key-idle-delay 0))
+  (setq which-key-idle-delay 0.1))
+
+
+;; Custom keybinding
+(use-package general
+  :config (general-define-key
+  :states '(normal visual insert emacs)
+  :prefix "SPC"
+  :non-normal-prefix "M-SPC"
+  ":"   '(counsel-M-x :which-key "M-x")
+  "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
+  "["   '(switch-to-prev-buffer :which-key "previous buffer")
+  "]"   '(switch-to-next-buffer :which-key "next buffer")
+  ;; "pf"  '(helm-find-file :which-key "find files")
+
+  ;; eval
+  "eb"  '(eval-buffer :which-key "eval buffer")
+
+  ;; Buffers
+  ;; "bb"  '(list-buffers :which-key "buffers list") TODO: Make this better
+  "fs"  '(save-buffer :which-key "save buffer")
+
+  ;; Window
+  "wl"  '(windmove-right :which-key "move right")
+  "wh"  '(windmove-left :which-key "move left")
+  "wk"  '(windmove-up :which-key "move up")
+  "wj"  '(windmove-down :which-key "move bottom")
+  "wL"  '(split-window-right :which-key "split right")
+  "wJ"  '(split-window-below :which-key "split bottom")
+  "wd"  '(delete-window :which-key "delete window")
+
+  ;; Others
+  "at"  '(ansi-term :which-key "open terminal")
+  "qq"  '(kill-emacs :which-key "quit")
+))
