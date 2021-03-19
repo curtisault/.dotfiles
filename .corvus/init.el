@@ -8,6 +8,8 @@
 (global-linum-mode 1)
 (column-number-mode)
 
+;; Fancy titlebar for MacOS
+
 ;; Font
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-12"))
 (add-to-list 'default-frame-alist '(line-spacing . 0.2))
@@ -23,8 +25,8 @@
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
-
 (package-initialize)
+
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -34,6 +36,10 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package evil
+  :config 
+  (evil-mode 1))
 
 (use-package doom-themes
   :init (load-theme 'doom-gruvbox t))
@@ -62,4 +68,12 @@
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
-
+ 
+(use-package which-key
+  :init
+  (setq which-key-separator " ")
+  (setq which-key-prefix-prefix "+")
+  :diminish which-key-mode
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0))
