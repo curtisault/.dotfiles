@@ -11,6 +11,15 @@
 (column-number-mode )
 
 ;; Fancy titlebar for MacOS
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+(setq ns-use-proxy-icon  nil)
+(setq frame-title-format nil)
+
+;; Transparent Emacs
+(set-frame-parameter (selected-frame) 'alpha '(85 85))
+(add-to-list 'default-frame-alist '(alpha 85 85))
+(set-face-attribute 'default nil :background "black" :foreground "white")
 
 ;; Font
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-12"))
@@ -46,7 +55,7 @@
 (use-package org-evil)
 
 (use-package doom-themes
-  :init (load-theme 'doom-vibrant t))
+  :init (load-theme 'doom-henna t))
 
 
 (use-package counsel
@@ -119,6 +128,7 @@
 
   ;; Buffers
   ;; "bb"  '(list-buffers :which-key "buffers list") TODO: Make this better
+  "bd"  '(kill-buffer :which-key "kill buffer")
   "fs"  '(save-buffer :which-key "save buffer")
 
   ;; Window
