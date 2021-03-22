@@ -1,11 +1,3 @@
-# Import to ~/.zshrc:
-# if [ -f ~/.alias ]; then
-#     source ~/.alias
-# else
-#     print "404: ~/.alias not found."
-# fi
-
-
 # Dependencies: 
 #   Languages:  elm, elixir 
 #   Databases:  postgres
