@@ -10,16 +10,21 @@ My Corvus Configs
 
 ### Homebrew
 
-**Install All**: `brew install vim neovim tmux fzf ripgrep exa bat fd nextdns`
-- _VIM_:      `brew install vim`
-- _NeoVim_:   `brew install neovim`
-- _TMUX_:     `brew install tmux`
-- _FZF_:      `brew install fzf`
-- _RIPGREP_:  `brew install ripgrep`
-- _EXA_:      `brew install exa`
-- _BAT_:      `brew install bat`
-- _FD_:       `brew install fd`
-- _NextDNS_:  `brew install nextdns`
+**Install All**: 
+```
+brew install alacritty vim neovim tmux fzf ripgrep exa bat fd nextdns tldr
+```
+- _Alacritty_:  `brew install alacritty`
+- _VIM_:        `brew install vim`
+- _NeoVim_:     `brew install neovim`
+- _TMUX_:       `brew install tmux`
+- _FZF_:        `brew install fzf`
+- _RIPGREP_:    `brew install ripgrep`
+- _EXA_:        `brew install exa`
+- _BAT_:        `brew install bat`
+- _FD_:         `brew install fd`
+- _NextDNS_:    `brew install nextdns`
+- _TLDR:        `brew install tldr`
 
 **Show All**: `brew list`
 
