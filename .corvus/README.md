@@ -12,11 +12,12 @@ My Corvus Configs
 
 **Install All**: 
 ```
-brew install alacritty vim neovim tmux fzf ripgrep exa bat fd nextdns tldr
+brew install alacritty vim neovim ctags tmux fzf ripgrep exa bat fd nextdns tldr
 ```
 - _Alacritty_:  `brew install alacritty`
 - _VIM_:        `brew install vim`
 - _NeoVim_:     `brew install neovim`
+- _CTAGS_:      `brew install ctags`
 - _TMUX_:       `brew install tmux`
 - _FZF_:        `brew install fzf`
 - _RIPGREP_:    `brew install ripgrep`
@@ -24,7 +25,7 @@ brew install alacritty vim neovim tmux fzf ripgrep exa bat fd nextdns tldr
 - _BAT_:        `brew install bat`
 - _FD_:         `brew install fd`
 - _NextDNS_:    `brew install nextdns`
-- _TLDR:        `brew install tldr`
+- _TLDR_:       `brew install tldr`
 
 **Show All**: `brew list`
 
