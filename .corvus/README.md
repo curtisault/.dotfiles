@@ -12,16 +12,12 @@ My Corvus Configs
 
 **Install All**: `brew install fzf ripgrep exa bat fd tmux`
 
-- _FZF_:      `brew install fzf`
-
-- _RIPGREP_:  `brew install ripgrep`
-
-- _EXA_:      `brew install exa`
-
-- _BAT_:      `brew install bat`
-
-- _FD_:       `brew install fd`
-
+- _VIM:       `brew install vim`
 - _TMUX_:     `brew install tmux`
+- _FZF_:      `brew install fzf`
+- _RIPGREP_:  `brew install ripgrep`
+- _EXA_:      `brew install exa`
+- _BAT_:      `brew install bat`
+- _FD_:       `brew install fd`
 
 **Show All**: `brew list`
