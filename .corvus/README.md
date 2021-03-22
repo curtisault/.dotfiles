@@ -33,3 +33,14 @@ brew install alacritty vim neovim ctags tmux fzf ripgrep exa bat fd nextdns tldr
 [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
 
 -----
+
+# Aliases
+
+Be sure to import into `.zshrc` file:
+```
+if [ -f ~/.alias ]; then
+  source ~/.alias
+else
+  print "404: ~/.alias not found."z
+fi
+```
