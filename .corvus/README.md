@@ -41,6 +41,6 @@ Be sure to import into `.zshrc` file:
 if [ -f ~/.alias ]; then
   source ~/.alias
 else
-  print "404: ~/.alias not found."z
+  print "404: ~/.alias not found."
 fi
 ```
