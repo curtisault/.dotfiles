@@ -8,4 +8,15 @@ My Corvus Configs
 
 ## Terminal
 
-### FZF
+### Homebrew
+
+**Install All**: `brew install fzf ripgrep exa bat fd tmux`
+
+_FZF_:      `brew install fzf`
+_RIPGREP_:  `brew install ripgrep`
+_EXA_:      `brew install exa`
+_BAT_:      `brew install bat`
+_FD_:       `brew install fd`
+_TMUX_:     `brew install tmux`
+
+**Show All**: `brew list`
