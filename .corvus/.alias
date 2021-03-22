@@ -1,0 +1,24 @@
+# Import to ~/.zshrc:
+# if [ -f ~/.alias ]; then
+#     source ~/.alias
+# else
+#     print "404: ~/.alias not found."
+# fi
+
+
+# dependencies: 
+#   elm, elixir, exa, neovim, fzf, postgres
+
+alias l='exa -F -l -a --group-directories-first --colour-scale'
+alias cc='yarn && mix do clean, deps.get && mix compile --color --warnings-as-errors && mix graphql'
+alias rc='MIX_DB=staging iex -S mix phx.server'
+alias rc_local='iex -S mix phx.server'
+alias precommit='.git/hooks/pre-commit'
+alias yw='yarn watch'
+alias python='python3'
+alias p='python3'
+alias n='nvim'
+alias vim='nvim'
+alias h='history | fzf --tac'
+alias pg_set_local='export PGHOST=127.0.0.1; export PGUSER=postgres; export PGPASSWORD=_set_pass_for_db_here_;'
+alias pg_set_staging='export PGHOST=_set_host_url_for_db_here_; export PGUSER=_set_default_db_user_here_; export PGPASSWORD=_set_pass_for_db_here_;'
