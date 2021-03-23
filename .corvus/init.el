@@ -55,7 +55,7 @@
 (use-package org-evil)
 
 (use-package doom-themes
-  :init (load-theme 'doom-henna t))
+  :init (load-theme 'doom-gruvbox t))
 
 
 (use-package counsel
@@ -81,17 +81,14 @@
   :custom
   (ivy-count-format "(%d/%d) ")
   (ivy-use-virtual-buffers t)
+  (enable-recursive-minibuffers t)
   :config (ivy-mode))
 
 (use-package ivy-rich
-  :after ivy
-  :custom
-  (ivy-virtual-abbreviate 'full
-                          ivy-rich-switch-buffer-align-virtual-buffer t
-                          ivy-rich-path-style 'abbrev)
-  :config
-  (ivy-set-display-transformer 'ivy-switch-buffer
-                               'ivy-rich-switch-buffer-transformer))
+  :after counsel
+  :init (setq ivy-rich-path-style 'abbrev
+	      ivy-virtual-abbreviate 'full)
+  :config (ivy-rich-mode))
 
 (use-package swiper
   :after ivy
@@ -127,9 +124,13 @@
   "eb"  '(eval-buffer :which-key "eval buffer")
 
   ;; Buffers
-  ;; "bb"  '(list-buffers :which-key "buffers list") TODO: Make this better
+  "bs"  '(list-buffers :which-key "buffers list") ; TODO: Make this better
+  "bb"  '(switch-to-buffer :which-key "switch buffer")
   "bd"  '(kill-buffer :which-key "kill buffer")
   "fs"  '(save-buffer :which-key "save buffer")
+
+  ;; Search
+  "sb"  '(swiper-isearch :which-key "search buffer")
 
   ;; Window
   "wl"  '(windmove-right :which-key "move right")
@@ -141,6 +142,7 @@
   "wd"  '(delete-window :which-key "delete window")
 
   ;; Others
+  "ff"  '(counsel-find-file :which-key "find file")
   "at"  '(ansi-term :which-key "open terminal")
   "qq"  '(kill-emacs :which-key "quit")
 ))
