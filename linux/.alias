@@ -1,5 +1,5 @@
 # Deps:
-#   exa, fd
+#   exa, fd, xclip
 
 alias l='exa -F -l -a --group-directories-first --colour-scale'
 alias h='history | fzf --tac'
