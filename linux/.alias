@@ -1,1 +1,5 @@
-
+alias l='exa -F -l -a --group-directories-first --colour-scale'
+alias h='history | fzf --tac'
+alias fd='fdfind'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
