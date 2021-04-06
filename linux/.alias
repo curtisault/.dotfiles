@@ -1,3 +1,6 @@
+# Deps:
+#   exa
+
 alias l='exa -F -l -a --group-directories-first --colour-scale'
 alias h='history | fzf --tac'
 alias fd='fdfind'
