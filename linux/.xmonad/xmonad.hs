@@ -54,7 +54,8 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+-- myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces    = ["\61728","\62057","\61744","\61878","\61922","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -133,7 +134,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
     --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+    , ((modm              , xK_f     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
@@ -350,8 +351,8 @@ myConfig xmproc0 xmproc1 = def {
   logHook = dynamicLogWithPP $ xmobarPP {
     ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
   , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-  , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-  , ppSep = " "
+  , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "|" "|"
+  -- , ppSep = " "
   }
   , manageHook         = manageDocks <+> myManageHook
   , handleEventHook    = docksEventHook
@@ -368,4 +369,5 @@ myConfig xmproc0 xmproc1 = def {
   , layoutHook         = myLayout
   , startupHook        = myStartupHook
 }
+
 
