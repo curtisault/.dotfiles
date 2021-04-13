@@ -350,9 +350,12 @@ main = do
 myConfig xmproc0 xmproc1 = def {
   logHook = dynamicLogWithPP $ xmobarPP {
     ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
-  , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-  , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "|" "|"
-  -- , ppSep = " "
+  , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100               -- Title of active window in xmobar
+  , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "[" "]" -- Current workspace
+  , ppVisible = xmobarColor "#98be65" ""                                  -- Visible but not current workspace
+  , ppHidden = xmobarColor "#82aaff" ""                                   -- Hidden workspaces
+  , ppHiddenNoWindows = xmobarColor "#c7292ea" ""                         -- Hidden workspaces (no windows)
+  , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"                    -- Urgent workspace
   }
   , manageHook         = manageDocks <+> myManageHook
   , handleEventHook    = docksEventHook
