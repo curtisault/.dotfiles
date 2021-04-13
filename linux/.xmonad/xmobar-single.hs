@@ -16,10 +16,10 @@ Config { font = "xft:FontAwesome:pixelsize=16:antialias=true:hinting=true,JetBra
        , allDesktops = True
        , overrideRedirect = True
        , commands = [Run Weather "KSAT" ["-t","San Antonio: <tempF>°"
-                                       , "-L","18","-H","25"
-                                       , "--normal","#d9a0fc"
-                                       , "--high","lightgoldenrod4"
-                                       , "--low","darkseagreen4"] 
+                                       , "-L","35","-H","90"
+                                       , "--normal","#05fa71"
+                                       , "--high","darkorange"
+                                       , "--low","#21dbde"] 
                                        36000
                     -- , Run Network "lo" ["-L","0","-H","32", "--normal","green","--high","red"] 10
                     , Run Network "eno2" ["-t", "   <rx>KB |  <tx>KB" , "-L", "0", "-H", "32", "--normal", "green", "--high", "green"] 10
@@ -31,7 +31,7 @@ Config { font = "xft:FontAwesome:pixelsize=16:antialias=true:hinting=true,JetBra
                                        , "-n", "yellow"
                                        , "-h", "red",
                        "--", "--mintemp", "20", "--maxtemp", "100"] 50
-                    , Run DiskU [("/", ":  <usedp>%"), ("/sda1", ":  <usedp>%")]
+                    , Run DiskU [("/", ":  <free> Free"), ("/sda1", ":  <free> Free")]
                                 ["-L", "20", "-H", "50", "-m", "1", "-p", "3"]
                                 20
                     , Run Memory ["-t","  <usedratio>%"] 10
@@ -42,6 +42,6 @@ Config { font = "xft:FontAwesome:pixelsize=16:antialias=true:hinting=true,JetBra
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% } <fc=#ee9a00>%date%</fc> \
+       , template = "%StdinReader% } <fc=#C3FCA0>%date%</fc> \
        \{  %cpu%  /  %multicoretemp%  /  %memory%  /  %eno2%  /  %disku%  /  %KSAT%  /   %uname%"
        }
