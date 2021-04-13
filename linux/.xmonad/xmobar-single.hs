@@ -12,7 +12,7 @@ Config { font = "xft:FontAwesome:pixelsize=16:antialias=true:hinting=true,JetBra
        , pickBroadest = False
        , persistent = False
        , hideOnStart = False
-       , iconRoot = "."
+       , iconRoot = "/home/curtis/.xmonad/xpm/"
        , allDesktops = True
        , overrideRedirect = True
        , commands = [Run Weather "KSAT" ["-t","San Antonio: <tempF>°"
@@ -38,10 +38,10 @@ Config { font = "xft:FontAwesome:pixelsize=16:antialias=true:hinting=true,JetBra
                     , Run Swap [] 10
                     , Run Com "uname" ["-s", "-r"] "" 36000
                     , Run Date "%H:%M:%S | %Y-%m-%d %p" "date" 10
-                    , Run StdinReader
+                    , Run UnsafeStdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% } <fc=#C3FCA0>%date%</fc> \
+       , template = "<icon=haskell_20.xpm/> %UnsafeStdinReader% } <fc=#C3FCA0>%date%</fc> \
        \{  %cpu%  /  %multicoretemp%  /  %memory%  /  %eno2%  /  %disku%  /  %KSAT%  /   %uname%"
        }
