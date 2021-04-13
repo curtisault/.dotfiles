@@ -59,14 +59,12 @@ myWorkspaces    = ["\61728","\62057","\61744","\61878","\61922","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
+myNormalBorderColor :: String
 myNormalBorderColor  = "#dddddd"
+
+myFocusedBorderColor :: String
 myFocusedBorderColor = "#d9a0fc"
 
--- Color of current window title in xmobar.
-xmobarTitleColor = "#FFB6B0"
-
--- Color of current workspace in xmobar.
-xmobarCurrentWorkspaceColor = "#CEFFAC"
 
 ------------------------------------------------------------------------
 -- KEY BINDINGS
@@ -338,7 +336,7 @@ help = unlines ["The default modifier key is 'alt'. Default keybindings:",
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
---
+main :: IO ()
 main = do
     -- setRandomWallpaper ["paths-of-your choice", "/usr/share/backgrounds/pop"]
     xmproc0 <- spawnPipe $ myBar 0
@@ -350,11 +348,11 @@ main = do
 myConfig xmproc0 xmproc1 = def {
   logHook = dynamicLogWithPP $ xmobarPP {
     ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
-  , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100               -- Title of active window in xmobar
-  , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "[" "]" -- Current workspace
+  , ppTitle = xmobarColor "#FFB6B0" "" . shorten 100               -- Title of active window in xmobar
+  , ppCurrent = xmobarColor "#CEFFAC" "" . wrap "[" "]" -- Current workspace
   , ppVisible = xmobarColor "#98be65" ""                                  -- Visible but not current workspace
   , ppHidden = xmobarColor "#82aaff" ""                                   -- Hidden workspaces
-  , ppHiddenNoWindows = xmobarColor "#c7292ea" ""                         -- Hidden workspaces (no windows)
+  , ppHiddenNoWindows = xmobarColor "#FFD782" ""                         -- Hidden workspaces (no windows)
   , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"                    -- Urgent workspace
   }
   , manageHook         = manageDocks <+> myManageHook
