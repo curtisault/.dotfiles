@@ -34,10 +34,13 @@ pidinfo() { ps -p $(pgrep $1) }
 
 # tshark
 TSHARK_HTTP_HEAD='tshark \
-    -Y "http.request.method == \"GET\" or http.request.method == \"POST\" or http.request.method == \"PUT\" or http.request.method == \"DELETE\"" \
+    -Y "http.request.method == \"GET\" or \
+        http.request.method == \"POST\" or \
+        http.request.method == \"PUT\" or \
+        http.request.method == \"DELETE\"" \
     -T fields \
         -e http.request.method \
         -e http.request.version \
         -e http.request.uri \
-    | head -n 3'
+    | head -n 1'
 
