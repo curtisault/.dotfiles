@@ -1,3 +1,11 @@
+# Import to ~/.zshrc:
+# if [ -f ~/.alias ]; then
+#     source ~/.alias
+# else
+#     print "404: ~/.alias not found."
+# fi
+
+
 # Dependencies: 
 #   Languages:  elm, elixir 
 #   Databases:  postgres
@@ -5,17 +13,31 @@
 #   Terminal:   bat, exa, neovim, fzf
 
 alias l='exa -F -l -a --group-directories-first --colour-scale'
-alias cc='yarn && mix do clean, deps.get && mix compile --color --warnings-as-errors && mix graphql'
+alias cc='yarn && mix do clean, deps.get && mix compile --warnings-as-errors && mix graphql'
 alias rc='MIX_DB=staging iex -S mix phx.server'
 alias rc_local='iex -S mix phx.server'
 alias precommit='.git/hooks/pre-commit'
 alias yw='yarn watch'
-alias python='python3'
 alias p='python3'
 alias n='nvim'
-alias vim='nvim'
-alias b='bat'
-alias e='emacs -nw'
 alias h='history | fzf --tac'
-alias pg_set_local='export PGHOST=127.0.0.1; export PGUSER=postgres; export PGPASSWORD=_set_pass_for_db_here_;'
-alias pg_set_staging='export PGHOST=_set_host_url_for_db_here_; export PGUSER=_set_default_db_user_here_; export PGPASSWORD=_set_pass_for_db_here_;'
+alias e='emacs -q -nw'
+alias pg_set_local='export PGHOST=127.0.0.1; export PGUSER=_set_user_here_; export PGPASSWORD=_set_pass_for_db_here_;'
+alias pg_set_staging='export PGHOST=_set_host_url_for_db_here_; export PGUSER=_set_user_here_; export PGPASSWORD=_set_pass_for_db_here_;'
+alias beaminfo='pidinfo beam'
+alias killbeam='pidkill beam'
+alias tshark_http_head=$TSHARK_HTTP_HEAD
+
+# processes
+pidkill() { kill -9 $(pgrep $1) }
+pidinfo() { ps -p $(pgrep $1) }
+
+# tshark
+TSHARK_HTTP_HEAD='tshark \
+    -Y "http.request.method == \"GET\" or http.request.method == \"POST\" or http.request.method == \"PUT\" or http.request.method == \"DELETE\"" \
+    -T fields \
+        -e http.request.method \
+        -e http.request.version \
+        -e http.request.uri \
+    | head -n 3'
+
