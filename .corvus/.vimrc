@@ -43,8 +43,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
     " wiki and markdown tools
-    " Plug 'vimwiki/vimwiki'
-    " Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
+    Plug 'vimwiki/vimwiki'
+    Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 call plug#end()
 
 " ------------------------------------ Statusline ------------------------------------ 
@@ -59,7 +59,7 @@ endfunction
 
 set laststatus=2 "always show status line
 
-set statusline=
+set statusline= "Left side
 set statusline+=%#PmenuSel#
 set statusline+=%{StatuslineGit()}
 set statusline+=%#TabLineSel#
@@ -76,7 +76,7 @@ set statusline+=\ %c:%l
 " ------------------------------------ Colorscheme ------------------------------------ 
 set termguicolors
 colorscheme gruvbox
-" set background=light
+set background=dark
 
 if executable('rg')
    let g:rg_derive_root='true'
@@ -129,3 +129,4 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:netrw_browse_split=2
 let g:netrw_winsize=25
 let g:netrw_banner=0
+
