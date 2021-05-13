@@ -5,6 +5,14 @@
 #     print "404: ~/.alias not found."
 # fi
 
+# Create local .secrets for holding user/pass values
+# import here
+
+if [ -f ~/.secrets ]; then
+    source ~/.secrets
+else
+    print "${Light_Red}404: ~/.secrets not found.${NO_COLOR}"
+fi
 
 # Dependencies: 
 #   Languages:  elm, elixir 
@@ -12,27 +20,45 @@
 #   Editors:    emacs, neovim
 #   Terminal:   bat, exa, neovim, fzf
 
-alias l='exa -F -l -a --group-directories-first --colour-scale'
-alias cc='yarn && mix do clean, deps.get && mix compile --warnings-as-errors && mix graphql'
-alias rc='MIX_DB=staging iex -S mix phx.server'
-alias rc_local='iex -S mix phx.server'
+alias l=$LS
+alias rcc=$RECOMPILE_THE_WHOLE_ENCHILADA
+alias cc=$COMPILE_CROWBAR
+alias rc=$RUN_CROWBAR_STAGING_DB
+alias rc_local=$RUN_CROWBAR_LOCAL_DB
 alias precommit='.git/hooks/pre-commit'
 alias yw='yarn watch'
 alias p='python3'
 alias n='nvim'
 alias h='history | fzf --tac'
 alias e='emacs -q -nw'
-alias pg_set_local='export PGHOST=127.0.0.1; export PGUSER=_set_user_here_; export PGPASSWORD=_set_pass_for_db_here_;'
-alias pg_set_staging='export PGHOST=_set_host_url_for_db_here_; export PGUSER=_set_user_here_; export PGPASSWORD=_set_pass_for_db_here_;'
+alias sz='source ~/.zshrc'
+alias pg_set_local=$PG_SET_LOCAL_ENV
+alias pg_set_staging=$PG_SET_STAGING_ENV
 alias beaminfo='pidinfo beam'
 alias killbeam='pidkill beam'
 alias tshark_http_head=$TSHARK_HTTP_HEAD
 
-# processes
-pidkill() { kill -9 $(pgrep $1) }
-pidinfo() { ps -p $(pgrep $1) }
+# complex commands
+RUN_CROWBAR_STAGING_DB='MIX_DB=staging iex -S mix phx.server'
+RUN_CROWBAR_LOCAL_DB='iex -S mix phx.server'
 
-# tshark
+RECOMPILE_THE_WHOLE_ENCHILADA='yarn && \
+    mix do clean, deps.get && \
+    mix compile --warnings-as-errors && \
+    mix graphql && \
+    docker-compose kill && \
+    docker-compose up -d'
+
+COMPILE_CROWBAR='yarn && \
+    mix do clean, deps.get && \
+    mix compile --warnings-as-errors && \
+    mix graphql'
+
+PG_SET_LOCAL_ENV="export PGHOST=${LOCAL_PG_HOST}; export PGUSER=${LOCAL_PG_USER}; export PGPASSWORD=${LOCAL_PG_PASSWORD};"
+PG_SET_STAGING_ENV="export PGHOST=${STAGING_PG_HOST}; export PGUSER=${STAGING_PG_USER}; export PGPASSWORD=${STAGING_PG_PASSWORD};"
+
+LS='exa -F -l -a --group-directories-first --colour-scale'
+
 TSHARK_HTTP_HEAD='tshark \
     -Y "http.request.method == \"GET\" or \
         http.request.method == \"POST\" or \
@@ -43,4 +69,31 @@ TSHARK_HTTP_HEAD='tshark \
         -e http.request.version \
         -e http.request.uri \
     | head -n 1'
+
+
+# funcs
+pidkill() { kill -9 $(pgrep $1) }
+pidinfo() { ps -p $(pgrep $1) }
+
+
+
+# colors (ANSI escape codes)
+# TRY_COLOR='ESC[ 48;2;1;2;3'
+NO_COLOR='\033[0m'
+Black='\033[0;30m'
+Dark_Gray='\033[1;30m'
+Red='\033[0;31m'
+Light_Red='\033[1;31m'
+Green='\033[0;32m'
+Light_Green='\033[1;32m'
+Brown_Orange='\033[0;33m'
+Yellow='\033[1;33m'
+Blue='\033[0;34m'
+Light_Blue='\033[1;34m'
+Purple='\033[0;35m'
+Light_Purple='\033[1;35m'
+Cyan='\033[0;36m'
+Light_Cyan='\033[1;36m'
+Light_Gray='\033[0;37m'
+White='\033[1;37m'
 
