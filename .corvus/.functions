@@ -1,0 +1,24 @@
+if [ -f ~/.emojis ]; then
+    source ~/.emojis
+else
+    print "\033[1;31m 404: ~/.emojis not found. \033[0m"
+fi
+
+fancy_echo() {
+  local fmt="$1"; shift
+
+  # shellcheck disable=SC2059
+  printf "\n$fmt\n" "$@"
+}
+
+rg_files() {
+    fancy_echo "${FACE_WITH_MONOCLE} ripgrep file matches"
+    rg $1 --files-with-matches
+}
+
+find_and_replace() {
+    fancy_echo "${ROCKET}${ROCKET}${ROCKET} replacing $1 with $2 in these files..."
+    rg $1 --files-with-matches
+    # rg $1 --files-with-matches | xargs sed -i '' 's/$1/$2/g'
+}
+
