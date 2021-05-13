@@ -78,7 +78,6 @@ pidinfo() { ps -p $(pgrep $1) }
 
 
 # colors (ANSI escape codes)
-# TRY_COLOR='ESC[ 48;2;1;2;3'
 NO_COLOR='\033[0m'
 Black='\033[0;30m'
 Dark_Gray='\033[1;30m'
