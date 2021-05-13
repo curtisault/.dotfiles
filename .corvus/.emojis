@@ -1,0 +1,10 @@
+# copy/paste unicode from text -> https://unicode.org/Public/emoji/13.1/emoji-test.txt
+# download for offline parsing run
+#   > curl "https://unicode.org/Public/emoji/13.1/emoji-test.txt" -o ~/Downloads/emoji-test.txt
+
+
+FACE_WITH_MONOCLE='\U1F9D0'
+HOT_DOG='\U1F32D'
+ROCKET='\U1F680'
+WAFFLE='\U1F9C7'
+
