@@ -69,7 +69,8 @@ REINSTALL_CROWBAR_DEPS='cd $LAPTOP_PROJ_DIR && \
     asdf install && \
     ./elm.zsh'
 
-RECOMPILE_THE_WHOLE_ENCHILADA='cd $CROWBAR_PROJ_DIR && \
+RECOMPILE_THE_WHOLE_ENCHILADA='fancy_echo "${RADIOACTIVE}${RADIOACTIVE}${RADIOACTIVE} Recompiling the whole enhilada\n" && \
+    cd $CROWBAR_PROJ_DIR && \
     yarn cache clean && \
     yarn && \
     mix do clean, deps.get && \
@@ -84,11 +85,11 @@ COMPILE_CROWBAR='yarn && \
     mix compile --warnings-as-errors && \
     mix graphql'
 
-PG_SET_LOCAL_ENV="fancy_echo '⚠️⚠️⚠️ Setting Postgres Local Env...\n' && \
+PG_SET_LOCAL_ENV="fancy_echo '${WARNING}${WARNING}${WARNING} Setting Postgres Local Env...\n' && \
     export PGHOST=${LOCAL_PG_HOST}; \
     export PGUSER=${LOCAL_PG_USER}; \
     export PGPASSWORD=${LOCAL_PG_PASSWORD};"
-PG_SET_STAGING_ENV="fancy_echo '⚠️⚠️⚠️ Setting Postgres Staging Env...\n' && \
+PG_SET_STAGING_ENV="fancy_echo '${WARNING}${WARNING}${WARNING} Setting Postgres Staging Env...\n' && \
     export PGHOST=${STAGING_PG_HOST}; \
     export PGUSER=${STAGING_PG_USER}; \
     export PGPASSWORD=${STAGING_PG_PASSWORD};"
