@@ -14,6 +14,24 @@ else
     print "${Light_Red}404: ~/.secrets not found.${NO_COLOR}"
 fi
 
+# functions import
+
+if [ -f ~/.functions ]; then
+    source ~/.functions
+else
+    print "${Light_Red}404: ~/.functions not found.${NO_COLOR}"
+fi
+
+# emojis import
+
+if [ -f ~/.emojis ]; then
+    source ~/.emojis
+else
+    print "${Light_Red}404: ~/.emojis not found.${NO_COLOR}"
+fi
+
+
+
 # Dependencies: 
 #   Languages:  elm, elixir 
 #   Databases:  postgres
@@ -21,16 +39,17 @@ fi
 #   Terminal:   bat, exa, neovim, fzf
 
 alias l=$LS
-alias rcc=$RECOMPILE_THE_WHOLE_ENCHILADA
+alias rtwh=$RECOMPILE_THE_WHOLE_ENCHILADA
 alias cc=$COMPILE_CROWBAR
 alias rc=$RUN_CROWBAR_STAGING_DB
+alias reinstall_deps=$REINSTALL_CROWBAR_DEPS
 alias rc_local=$RUN_CROWBAR_LOCAL_DB
 alias precommit='.git/hooks/pre-commit'
 alias yw='yarn watch'
 alias p='python3'
 alias n='nvim'
 alias h='history | fzf --tac'
-alias e='emacs -q -nw'
+alias e='emacs -nw'
 alias sz='source ~/.zshrc'
 alias pg_set_local=$PG_SET_LOCAL_ENV
 alias pg_set_staging=$PG_SET_STAGING_ENV
@@ -38,14 +57,25 @@ alias beaminfo='pidinfo beam'
 alias killbeam='pidkill beam'
 alias tshark_http_head=$TSHARK_HTTP_HEAD
 
+CROWBAR_PROJ_DIR=~/Projects/crowbar
+LAPTOP_PROJ_DIR=~/Projects/laptop
+
 # complex commands
 RUN_CROWBAR_STAGING_DB='MIX_DB=staging iex -S mix phx.server'
 RUN_CROWBAR_LOCAL_DB='iex -S mix phx.server'
 
-RECOMPILE_THE_WHOLE_ENCHILADA='yarn && \
+REINSTALL_CROWBAR_DEPS='cd $LAPTOP_PROJ_DIR && \
+    git pull && \
+    asdf install && \
+    ./elm.zsh'
+
+RECOMPILE_THE_WHOLE_ENCHILADA='cd $CROWBAR_PROJ_DIR && \
+    yarn cache clean && \
+    yarn && \
     mix do clean, deps.get && \
     mix compile --warnings-as-errors && \
     mix graphql && \
+    MIX_ENV=test mix ecto.drop, ecto.create, ecto.migrate && \
     docker-compose kill && \
     docker-compose up -d'
 
@@ -54,8 +84,14 @@ COMPILE_CROWBAR='yarn && \
     mix compile --warnings-as-errors && \
     mix graphql'
 
-PG_SET_LOCAL_ENV="export PGHOST=${LOCAL_PG_HOST}; export PGUSER=${LOCAL_PG_USER}; export PGPASSWORD=${LOCAL_PG_PASSWORD};"
-PG_SET_STAGING_ENV="export PGHOST=${STAGING_PG_HOST}; export PGUSER=${STAGING_PG_USER}; export PGPASSWORD=${STAGING_PG_PASSWORD};"
+PG_SET_LOCAL_ENV="fancy_echo '⚠️⚠️⚠️ Setting Postgres Local Env...\n' && \
+    export PGHOST=${LOCAL_PG_HOST}; \
+    export PGUSER=${LOCAL_PG_USER}; \
+    export PGPASSWORD=${LOCAL_PG_PASSWORD};"
+PG_SET_STAGING_ENV="fancy_echo '⚠️⚠️⚠️ Setting Postgres Staging Env...\n' && \
+    export PGHOST=${STAGING_PG_HOST}; \
+    export PGUSER=${STAGING_PG_USER}; \
+    export PGPASSWORD=${STAGING_PG_PASSWORD};"
 
 LS='exa -F -l -a --group-directories-first --colour-scale'
 
@@ -95,4 +131,3 @@ Cyan='\033[0;36m'
 Light_Cyan='\033[1;36m'
 Light_Gray='\033[0;37m'
 White='\033[1;37m'
-
