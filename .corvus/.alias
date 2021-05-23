@@ -1,33 +1,33 @@
-# Import to ~/.zshrc:
-# if [ -f ~/.alias ]; then
-#     source ~/.alias
+# Import to $HOME/.zshrc:
+# if [ -f $HOME/.alias ]; then
+#     source $HOME/.alias
 # else
-#     print "404: ~/.alias not found."
+#     print "404: $HOME/.alias not found."
 # fi
 
 # Create local .secrets for holding user/pass values
 # import here
 
-if [ -f ~/.secrets ]; then
-    source ~/.secrets
+if [ -f $HOME/.secrets ]; then
+    source $HOME/.secrets
 else
-    print "${Light_Red}404: ~/.secrets not found.${NO_COLOR}"
+    print "${Light_Red}404: $HOME/.secrets not found.${NO_COLOR}"
 fi
 
 # functions import
 
-if [ -f ~/.functions ]; then
-    source ~/.functions
+if [ -f $HOME/.functions ]; then
+    source $HOME/.functions
 else
-    print "${Light_Red}404: ~/.functions not found.${NO_COLOR}"
+    print "${Light_Red}404: $HOME/.functions not found.${NO_COLOR}"
 fi
 
 # emojis import
 
-if [ -f ~/.emojis ]; then
-    source ~/.emojis
+if [ -f $HOME/.emojis ]; then
+    source $HOME/.emojis
 else
-    print "${Light_Red}404: ~/.emojis not found.${NO_COLOR}"
+    print "${Light_Red}404: $HOME/.emojis not found.${NO_COLOR}"
 fi
 
 
@@ -50,26 +50,27 @@ alias p='python3'
 alias n='nvim'
 alias h='history | fzf --tac'
 alias e='emacs -nw'
-alias sz='source ~/.zshrc'
+alias sz="source $HOME/.zshrc"
 alias pg_set_local=$PG_SET_LOCAL_ENV
 alias pg_set_staging=$PG_SET_STAGING_ENV
 alias beaminfo='pidinfo beam'
 alias killbeam='pidkill beam'
 alias tshark_http_head=$TSHARK_HTTP_HEAD
+alias info_and_versions="echo 'OS: $OSTYPE' && echo 'elmLS: $(elm-language-server -v)' && echo node: $(node -v)''"
 
-CROWBAR_PROJ_DIR=~/Projects/crowbar
-LAPTOP_PROJ_DIR=~/Projects/laptop
+CROWBAR_PROJ_DIR=$HOME/Projects/crowbar
+LAPTOP_PROJ_DIR=$HOME/Projects/laptop
 
 # complex commands
 RUN_CROWBAR_STAGING_DB='MIX_DB=staging iex -S mix phx.server'
 RUN_CROWBAR_LOCAL_DB='iex -S mix phx.server'
 
-REINSTALL_CROWBAR_DEPS='cd $LAPTOP_PROJ_DIR && \
+REINSTALL_CROWBAR_DEPS="cd $LAPTOP_PROJ_DIR && \
     git pull && \
     asdf install && \
-    ./elm.zsh'
+    ./elm.zsh"
 
-RECOMPILE_THE_WHOLE_ENCHILADA='fancy_echo "${RADIOACTIVE}${RADIOACTIVE}${RADIOACTIVE} Recompiling the whole enhilada\n" && \
+RECOMPILE_THE_WHOLE_ENCHILADA="fancy_echo "${RADIOACTIVE}${RADIOACTIVE}${RADIOACTIVE} Recompiling the whole enhilada\n" && \
     cd $CROWBAR_PROJ_DIR && \
     yarn cache clean && \
     yarn && \
@@ -78,18 +79,19 @@ RECOMPILE_THE_WHOLE_ENCHILADA='fancy_echo "${RADIOACTIVE}${RADIOACTIVE}${RADIOAC
     mix graphql && \
     MIX_ENV=test mix ecto.drop, ecto.create, ecto.migrate && \
     docker-compose kill && \
-    docker-compose up -d'
+    docker-compose up -d"
 
-COMPILE_CROWBAR='yarn && \
+COMPILE_CROWBAR="yarn && \
     mix do clean, deps.get && \
     mix compile --warnings-as-errors && \
-    mix graphql'
+    mix graphql"
 
-PG_SET_LOCAL_ENV="fancy_echo '${WARNING}${WARNING}${WARNING} Setting Postgres Local Env...\n' && \
+PG_SET_LOCAL_ENV="fancy_echo '${WAFFLE}${WAFFLE}${WAFFLE} Setting Postgres Local Env...\n' && \
     export PGHOST=${LOCAL_PG_HOST}; \
     export PGUSER=${LOCAL_PG_USER}; \
     export PGPASSWORD=${LOCAL_PG_PASSWORD};"
-PG_SET_STAGING_ENV="fancy_echo '${WARNING}${WARNING}${WARNING} Setting Postgres Staging Env...\n' && \
+
+PG_SET_STAGING_ENV="fancy_echo '${WAFFLE}${WAFFLE}${WAFFLE} Setting Postgres Staging Env...\n' && \
     export PGHOST=${STAGING_PG_HOST}; \
     export PGUSER=${STAGING_PG_USER}; \
     export PGPASSWORD=${STAGING_PG_PASSWORD};"
@@ -132,3 +134,4 @@ Cyan='\033[0;36m'
 Light_Cyan='\033[1;36m'
 Light_Gray='\033[0;37m'
 White='\033[1;37m'
+
