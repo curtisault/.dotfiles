@@ -41,9 +41,10 @@ fi
 alias l=$LS
 alias rtwh=$RECOMPILE_THE_WHOLE_ENCHILADA
 alias cc=$COMPILE_CROWBAR
-alias rc=$RUN_CROWBAR_STAGING_DB
+alias rc=$RUN_CROWBAR_LOCAL_DB
 alias reinstall_deps=$REINSTALL_CROWBAR_DEPS
-alias rc_local=$RUN_CROWBAR_LOCAL_DB
+alias rc_staging=$RUN_CROWBAR_STAGING_DB
+alias restart_docker=$RESTART_DOCKER
 alias precommit='.git/hooks/pre-commit'
 alias yw='yarn watch'
 alias p='python3'
@@ -56,7 +57,7 @@ alias pg_set_staging=$PG_SET_STAGING_ENV
 alias beaminfo='pidinfo beam'
 alias killbeam='pidkill beam'
 alias tshark_http_head=$TSHARK_HTTP_HEAD
-alias info_and_versions="echo 'OS: $OSTYPE' && echo 'elmLS: $(elm-language-server -v)' && echo node: $(node -v)''"
+alias info_and_versions="echo 'OS: $OSTYPE' && echo 'elmLS: $(elm-language-server -v)' && echo 'node: $(node -v)' && echo '$(elixir -v)'"
 
 CROWBAR_PROJ_DIR=$HOME/Projects/crowbar
 LAPTOP_PROJ_DIR=$HOME/Projects/laptop
@@ -70,7 +71,7 @@ REINSTALL_CROWBAR_DEPS="cd $LAPTOP_PROJ_DIR && \
     asdf install && \
     ./elm.zsh"
 
-RECOMPILE_THE_WHOLE_ENCHILADA="fancy_echo "${RADIOACTIVE}${RADIOACTIVE}${RADIOACTIVE} Recompiling the whole enhilada\n" && \
+RECOMPILE_THE_WHOLE_ENCHILADA="fancy_echo '${RADIOACTIVE}${RADIOACTIVE}${RADIOACTIVE} Recompiling the whole enhilada\n' && \
     cd $CROWBAR_PROJ_DIR && \
     yarn cache clean && \
     yarn && \
@@ -81,8 +82,12 @@ RECOMPILE_THE_WHOLE_ENCHILADA="fancy_echo "${RADIOACTIVE}${RADIOACTIVE}${RADIOAC
     docker-compose kill && \
     docker-compose up -d"
 
+RESTART_DOCKER="docker-compose kill && \
+    docker-compose up -d"
+
 COMPILE_CROWBAR="yarn && \
     mix do clean, deps.get && \
+    mix format && \
     mix compile --warnings-as-errors && \
     mix graphql"
 
@@ -134,4 +139,3 @@ Cyan='\033[0;36m'
 Light_Cyan='\033[1;36m'
 Light_Gray='\033[0;37m'
 White='\033[1;37m'
-
