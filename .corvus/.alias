@@ -39,7 +39,7 @@ fi
 #   Terminal:   bat, exa, neovim, fzf
 
 alias l=$LS
-alias rtwh=$RECOMPILE_THE_WHOLE_ENCHILADA
+alias rtwe=$RECOMPILE_THE_WHOLE_ENCHILADA
 alias cc=$COMPILE_CROWBAR
 alias rc=$RUN_CROWBAR_LOCAL_DB
 alias reinstall_deps=$REINSTALL_CROWBAR_DEPS
@@ -57,7 +57,7 @@ alias pg_set_staging=$PG_SET_STAGING_ENV
 alias beaminfo='pidinfo beam'
 alias killbeam='pidkill beam'
 alias tshark_http_head=$TSHARK_HTTP_HEAD
-alias info_and_versions="echo 'OS: $OSTYPE' && echo 'elmLS: $(elm-language-server -v)' && echo 'node: $(node -v)' && echo '$(elixir -v)'"
+# alias info_and_versions="echo 'OS: $OSTYPE' && echo 'elmLS: $(elm-language-server -v)' && echo 'node: $(node -v)' && echo '$(elixir -v)'"
 
 CROWBAR_PROJ_DIR=$HOME/Projects/crowbar
 LAPTOP_PROJ_DIR=$HOME/Projects/laptop
@@ -66,6 +66,8 @@ LAPTOP_PROJ_DIR=$HOME/Projects/laptop
 RUN_CROWBAR_STAGING_DB='MIX_DB=staging iex -S mix phx.server'
 RUN_CROWBAR_LOCAL_DB='iex -S mix phx.server'
 
+RESTART_DOCKER="docker-compose kill && docker-compose up -d"
+
 REINSTALL_CROWBAR_DEPS="cd $LAPTOP_PROJ_DIR && \
     git pull && \
     asdf install && \
@@ -73,6 +75,7 @@ REINSTALL_CROWBAR_DEPS="cd $LAPTOP_PROJ_DIR && \
 
 RECOMPILE_THE_WHOLE_ENCHILADA="fancy_echo '${RADIOACTIVE}${RADIOACTIVE}${RADIOACTIVE} Recompiling the whole enhilada\n' && \
     cd $CROWBAR_PROJ_DIR && \
+    rm -rf assets/node_modules && \
     yarn cache clean && \
     yarn && \
     mix do clean, deps.get && \
@@ -82,12 +85,10 @@ RECOMPILE_THE_WHOLE_ENCHILADA="fancy_echo '${RADIOACTIVE}${RADIOACTIVE}${RADIOAC
     docker-compose kill && \
     docker-compose up -d"
 
-RESTART_DOCKER="docker-compose kill && \
-    docker-compose up -d"
-
 COMPILE_CROWBAR="yarn && \
     mix do clean, deps.get && \
     mix format && \
+    mix lint && \
     mix compile --warnings-as-errors && \
     mix graphql"
 
