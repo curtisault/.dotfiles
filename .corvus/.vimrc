@@ -27,24 +27,31 @@ set errorformat+=%f
 call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-    Plug 'sharkdp/fd'
     Plug 'elixir-editors/vim-elixir'
     Plug 'slashmili/alchemist.vim'
     Plug 'elmcast/elm-vim'
     Plug 'janko-m/vim-test'
 
+    " File & Fuzzy Search
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'sharkdp/fd'
+
     " Themes
     Plug 'morhetz/gruvbox'
+    Plug 'kwsp/halcyon-neovim'
+    Plug 'marko-cerovac/material.nvim'
+    Plug 'sainnhe/sonokai'
+    Plug 'sainnhe/everforest'
+    Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 
     " CoC
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
     " wiki and markdown tools
-    Plug 'vimwiki/vimwiki'
-    Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
+    " Plug 'vimwiki/vimwiki'
+    " Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 call plug#end()
 
 " ------------------------------------ Statusline ------------------------------------ 
@@ -75,8 +82,41 @@ set statusline+=\ %c:%l
 
 " ------------------------------------ Colorscheme ------------------------------------ 
 set termguicolors
-colorscheme gruvbox
 set background=dark
+
+" -- Gruvbox
+" colorscheme gruvbox
+
+
+" -- Halcyon
+" colorscheme halcyon
+
+
+" -- Sonokai
+"  options: default, atlantis, andromeda, shusia, maia
+" let g:sonokai_style = 'maia'
+" let g:sonokai_enable_italic = 1
+" let g:sonokai_disable_italic_comment = 1
+" let g:sonokai_transparent_background = 1
+" colorscheme sonokai
+
+
+" -- Everforest
+" options: 'hard', 'medium'(default), 'soft'
+let g:everforest_background = 'soft'
+let g:everforest_transparent_background = 0
+colorscheme everforest
+
+
+" -- Material
+" options: darker, lighter, oceanic, palenight, deep ocean
+" colorscheme material
+" let g:material_style = 'lighter'
+
+
+" -- Halcyon
+" colorscheme spaceduck
+
 
 if executable('rg')
    let g:rg_derive_root='true'
@@ -109,6 +149,26 @@ nnoremap <silent><C-h> <cmd>:vertical resize +5<CR>
 nnoremap <silent><C-l> <cmd>:vertical resize -5<CR>
 nnoremap <silent><C-g> :Rg<CR>
 
+" Tab Navigation
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap tt <c-w>T
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap te  :tabedit<Space>
+nnoremap tn  :tabnew<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
+
 
 " Git
 nnoremap <silent><leader>gb :Git blame<CR>
@@ -129,4 +189,3 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:netrw_browse_split=2
 let g:netrw_winsize=25
 let g:netrw_banner=0
-
