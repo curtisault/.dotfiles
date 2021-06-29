@@ -22,9 +22,9 @@ Cyan='\033[0;36m'
 #Light_Gray='\033[0;37m'
 #White='\033[1;37m'
 
-
-print "${Cyan} Changing to dir ${Yellow} $HOME/Projects/crowbar ${NO_COLOR}"
-cd ~/Projects/crowbar
+CROWBAR_PATH=$HOME/Projects/crowbar
+print "${Cyan} Changing to dir ${Yellow} ${CROWBAR_PATH} ${NO_COLOR}"
+cd ${CROWBAR_PATH
 git stash
 CURRENT_BRANCH=$(git branch --show-current)
 print "${Purple} Current branch ${Yellow} ${CURRENT_BRANCH} ${NO_COLOR}"
