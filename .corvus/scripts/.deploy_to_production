@@ -22,20 +22,31 @@ Cyan='\033[0;36m'
 #Light_Gray='\033[0;37m'
 #White='\033[1;37m'
 
+# CHANGE PATH TO YOUR LOCAL CROWBAR PROJECT DIR
 CROWBAR_PATH=$HOME/Projects/crowbar
-print "${Cyan} Changing to dir ${Yellow} ${CROWBAR_PATH} ${NO_COLOR}"
-cd ${CROWBAR_PATH
-git stash
 CURRENT_BRANCH=$(git branch --show-current)
-print "${Purple} Current branch ${Yellow} ${CURRENT_BRANCH} ${NO_COLOR}"
-print "${Cyan} Checking out ${Yellow} main ${NO_COLOR}"
+
+print "${Cyan}Changing to dir ${Yellow} ${CROWBAR_PATH} ${NO_COLOR}"
+cd ${CROWBAR_PATH}
+
+print "${Cyan}Stashing changes ${NO_COLOR}"
+git stash
+
+print "${Purple}Current branch ${Yellow} ${CURRENT_BRANCH} ${NO_COLOR}"
+
+print "${Cyan}Checking out ${Yellow} main ${NO_COLOR}"
 git checkout main
 git fetch --all
 git pull origin main
-print "${Cyan} Deps ${NO_COLOR}"
+
+print "${Cyan}Deps ${NO_COLOR}"
 mix deps.get
-print "${Cyan} Deploying ${NO_COLOR}"
+
+print "${Cyan}Deploying ${NO_COLOR}"
 mix aws.prod.deploy
-print "${Cyan} Checking out ${Yellow} ${CURRENT_BRANCH} ${NO_COLOR}"
+
+print "${Cyan}Checking out ${Yellow} ${CURRENT_BRANCH} ${NO_COLOR}"
 git checkout ${CURRENT_BRANCH}
+
+print "${Cyan}Loading stashed changes ${NO_COLOR}"
 git stash pop
