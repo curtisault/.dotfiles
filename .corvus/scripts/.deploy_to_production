@@ -1,0 +1,41 @@
+#!/usr/bin/env zsh
+
+# stops the execution of a script if a command or pipeline has an error
+set -e
+
+# colors (ANSI escape codes)
+NO_COLOR='\033[0m'
+#Black='\033[0;30m'
+#Dark_Gray='\033[1;30m'
+#Red='\033[0;31m'
+#Light_Red='\033[1;31m'
+#Green='\033[0;32m'
+#Light_Green='\033[1;32m'
+#Brown_Orange='\033[0;33m'
+Yellow='\033[1;33m'
+Blue='\033[0;34m'
+#Light_Blue='\033[1;34m'
+Purple='\033[0;35m'
+#Light_Purple='\033[1;35m'
+Cyan='\033[0;36m'
+#Light_Cyan='\033[1;36m'
+#Light_Gray='\033[0;37m'
+#White='\033[1;37m'
+
+
+print "${Cyan} Changing to dir ${Yellow} $HOME/Projects/crowbar ${NO_COLOR}"
+cd ~/Projects/crowbar
+git stash
+CURRENT_BRANCH=$(git branch --show-current)
+print "${Purple} Current branch ${Yellow} ${CURRENT_BRANCH} ${NO_COLOR}"
+print "${Cyan} Checking out ${Yellow} main ${NO_COLOR}"
+git checkout main
+git fetch --all
+git pull origin main
+print "${Cyan} Deps ${NO_COLOR}"
+mix deps.get
+print "${Cyan} Deploying ${NO_COLOR}"
+mix aws.prod.deploy
+print "${Cyan} Checking out ${Yellow} ${CURRENT_BRANCH} ${NO_COLOR}"
+git checkout ${CURRENT_BRANCH}
+git stash pop
