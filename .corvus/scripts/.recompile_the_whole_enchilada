@@ -1,0 +1,65 @@
+#!/usr/bin/env zsh
+
+# stops the execution of a script if a command or pipeline has an error
+set -e
+
+# colors (ANSI escape codes)
+NO_COLOR='\033[0m'
+#Black='\033[0;30m'
+#Dark_Gray='\033[1;30m'
+#Red='\033[0;31m'
+Light_Red='\033[1;31m'
+#Green='\033[0;32m'
+Light_Green='\033[1;32m'
+#Brown_Orange='\033[0;33m'
+Yellow='\033[1;33m'
+#Blue='\033[0;34m'
+Light_Blue='\033[1;34m'
+Purple='\033[0;35m'
+#Light_Purple='\033[1;35m'
+Cyan='\033[0;36m'
+#Light_Cyan='\033[1;36m'
+#Light_Gray='\033[0;37m'
+#White='\033[1;37m'
+
+
+# CHANGE PATH TO YOUR LOCAL CROWBAR PROJECT DIR
+CROWBAR_PATH=$HOME/Projects/crowbar
+RADIOACTIVE='\U2622'
+TEST_TUBE='\U1F9EA'
+ROCKET='\U1F680'
+MONEY_BAG='\U1F4B0'
+YARN='\U1F9F6'
+
+print "${Yellow}${RADIOACTIVE}${RADIOACTIVE}${RADIOACTIVE} Recompiling the whole enhilada ${NO_COLOR}"
+cd $CROWBAR_PATH
+
+print "${Light_Red}${YARN} Removing yarn deps ${NO_COLOR}"
+rm -rf assets/node_modules
+
+print "${Light_Red}${YARN} Cleaning yarn cache ${NO_COLOR}"
+yarn cache clean
+
+print "${Light_Red}${YARN} Reinstalling yarn deps ${NO_COLOR}"
+yarn
+
+print "${Purple}${DROPLET} Reinstalling elixir deps ${NO_COLOR}"
+mix do clean, deps.get
+
+print "${Purple}${DROPLET} Format + Lint ${NO_COLOR}"
+mix format && mix lint
+
+print "${Cyan}${TEST_TUBE} Graphql ${NO_COLOR}"
+mix graphql
+
+print "${Cyan}Compile without warnings ${NO_COLOR}"
+mix compile --warnings-as-errors
+
+print "${Cyan}Reset local test env ${NO_COLOR}"
+MIX_ENV=test mix do ecto.drop, ecto.create, ecto.migrate
+
+print "${Light_Blue}Kill local Docker containers and restart ${NO_COLOR}"
+docker-compose kill && docker-compose up -d
+
+print "${Light_Green}Run crowbar pointed to local ${NO_COLOR}"
+MIX_ENV=local iex -S mix phx.server
