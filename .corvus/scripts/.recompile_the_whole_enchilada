@@ -27,6 +27,7 @@ Cyan='\033[0;36m'
 CROWBAR_PATH=$HOME/Projects/crowbar
 RADIOACTIVE='\U2622'
 TEST_TUBE='\U1F9EA'
+DROPLET='\U1F4A7'
 ROCKET='\U1F680'
 MONEY_BAG='\U1F4B0'
 YARN='\U1F9F6'
@@ -63,3 +64,5 @@ docker-compose kill && docker-compose up -d
 
 print "${Light_Green}Run crowbar pointed to local ${NO_COLOR}"
 MIX_ENV=local iex -S mix phx.server
+
+return
