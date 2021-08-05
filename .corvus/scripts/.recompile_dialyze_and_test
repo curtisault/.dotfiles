@@ -54,7 +54,7 @@ print "${Purple}Compile without warnings ${NO_COLOR}"
 mix compile --warnings-as-errors
 
 print "${Yellow}${ROCKET} Running Elm analysis ${NO_COLOR}"
-cd assets/ && elm-analyse
+cd assets/ elm-analyse && elm-review
 
 print "${Elixir}${TEST_TUBE} Running Elixir tests ${NO_COLOR}"
 cd ../ && mix test
