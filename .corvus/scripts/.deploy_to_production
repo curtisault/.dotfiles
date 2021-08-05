@@ -50,3 +50,6 @@ git checkout ${CURRENT_BRANCH}
 
 print "${Cyan}Loading stashed changes ${NO_COLOR}"
 git stash pop
+
+return
+
