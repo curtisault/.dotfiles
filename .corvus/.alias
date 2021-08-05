@@ -42,8 +42,10 @@ alias l=$LS
 alias rtwe=$RECOMPILE_THE_WHOLE_ENCHILADA
 alias cc=$COMPILE_CROWBAR
 alias rc=$RUN_CROWBAR_LOCAL_DB
+alias er=$ELM_REVIEW
 alias reinstall_deps=$REINSTALL_CROWBAR_DEPS
 alias rc_staging=$RUN_CROWBAR_STAGING_DB
+alias reset_crowbar_test=$DROP_AND_RE_TEST
 alias restart_docker=$RESTART_DOCKER
 alias precommit='.git/hooks/pre-commit'
 alias yw='yarn watch'
@@ -52,6 +54,7 @@ alias n='nvim'
 alias h='history | fzf --tac'
 alias e='emacs -nw'
 alias sz="source $HOME/.zshrc"
+alias glp=$GIT_LOG_PRETTY
 alias pg_set_local=$PG_SET_LOCAL_ENV
 alias pg_set_staging=$PG_SET_STAGING_ENV
 alias beaminfo='pidinfo beam'
@@ -66,6 +69,8 @@ LAPTOP_PROJ_DIR=$HOME/Projects/laptop
 RUN_CROWBAR_STAGING_DB='MIX_DB=staging iex -S mix phx.server'
 RUN_CROWBAR_LOCAL_DB='iex -S mix phx.server'
 
+ELM_REVIEW="elm-analyse && elm-review"
+
 RESTART_DOCKER="docker-compose kill && docker-compose up -d"
 
 REINSTALL_CROWBAR_DEPS="cd $LAPTOP_PROJ_DIR && \
@@ -79,6 +84,8 @@ RECOMPILE_THE_WHOLE_ENCHILADA="fancy_echo '${RADIOACTIVE}${RADIOACTIVE}${RADIOAC
     yarn cache clean && \
     yarn && \
     mix do clean, deps.get && \
+    mix format && \
+    mix lint && \
     mix compile --warnings-as-errors && \
     mix graphql && \
     MIX_ENV=test mix ecto.drop, ecto.create, ecto.migrate && \
@@ -102,7 +109,11 @@ PG_SET_STAGING_ENV="fancy_echo '${WAFFLE}${WAFFLE}${WAFFLE} Setting Postgres Sta
     export PGUSER=${STAGING_PG_USER}; \
     export PGPASSWORD=${STAGING_PG_PASSWORD};"
 
-LS='exa -F -l -a --group-directories-first --colour-scale'
+GIT_LOG_PRETTY="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
+
+DROP_AND_RE_TEST="MIX_DB=test mix ecto.drop && mix test"
+
+LS="exa -F -l -a --group-directories-first --colour-scale"
 
 TSHARK_HTTP_HEAD='tshark \
     -Y "http.request.method == \"GET\" or \
@@ -140,3 +151,4 @@ Cyan='\033[0;36m'
 Light_Cyan='\033[1;36m'
 Light_Gray='\033[0;37m'
 White='\033[1;37m'
+
