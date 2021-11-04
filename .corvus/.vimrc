@@ -12,7 +12,7 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
-set nu
+set number relativenumber
 set nowrap
 set smartcase
 set noswapfile
@@ -50,8 +50,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
     " wiki and markdown tools
-    " Plug 'vimwiki/vimwiki'
-    " Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
+    Plug 'vimwiki/vimwiki'
+    Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 call plug#end()
 
 " ------------------------------------ Statusline ------------------------------------ 
@@ -168,6 +168,9 @@ nnoremap te  :tabedit<Space>
 nnoremap tn  :tabnew<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
+
+" System Info
+nnoremap .d :echo system("date")<CR>
 
 
 " Git
