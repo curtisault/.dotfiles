@@ -12,5 +12,16 @@ Length3=-1
 File4=http://ice4.somafm.com/suburbsofgoa-128-aac
 Title4=SomaFM: Suburbs of Goa (#4): Desi-influenced Asian world beats and beyond.
 Length4=-1
+File5=http://ice2.somafm.com/beatblender-128-aac
+Title5=SomaFM: Beat Blender: A late night blend of deep-house and downtempo chill.
+Length5=-1
+File6=http://ice4.somafm.com/christmas-128-aac
+Title6=SomaFM: Christmas Lounge: Chilled holiday grooves and classic winter lounge tracks. (Kid and Parent safe!)
+Length6=-1
+File7=http://ice6.somafm.com/jollysoul-128-aac
+Title7=SomaFM: Jolly Ol Soul: Chilled holiday grooves and classic winter lounge tracks. (Kid and Parent safe!)
+Length7=-1
+File8=http://ice6.somafm.com/sf1033-128-aac
+Title8=SomaFM: SF 10-33: Ambient music mixed with the sounds of San Francisco public safety radio traffic.
+Length8=-1
 Version=2
-
