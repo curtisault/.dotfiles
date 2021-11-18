@@ -29,7 +29,6 @@ RADIOACTIVE='\U2622'
 TEST_TUBE='\U1F9EA'
 DROPLET='\U1F4A7'
 ROCKET='\U1F680'
-MONEY_BAG='\U1F4B0'
 YARN='\U1F9F6'
 
 print "${Yellow}${RADIOACTIVE}${RADIOACTIVE}${RADIOACTIVE} Recompiling the whole enhilada ${NO_COLOR}"
@@ -37,6 +36,9 @@ cd $CROWBAR_PATH
 
 print "${Light_Red}${YARN} Removing yarn deps ${NO_COLOR}"
 rm -rf assets/node_modules
+
+print "${Yellow}${YARN} Removing elm stuff ${NO_COLOR}"
+rm -rf assets/elm-stuff
 
 print "${Light_Red}${YARN} Cleaning yarn cache ${NO_COLOR}"
 yarn cache clean
@@ -59,10 +61,15 @@ mix compile --warnings-as-errors
 print "${Cyan}Reset local test env ${NO_COLOR}"
 MIX_ENV=test mix do ecto.drop, ecto.create, ecto.migrate
 
+print "${Cyan}Migrate local env ${NO_COLOR}"
+mix ecto.migrate
+
 print "${Light_Blue}Kill local Docker containers and restart ${NO_COLOR}"
 docker-compose kill && docker-compose up -d
 
-print "${Light_Green}Run crowbar pointed to local ${NO_COLOR}"
-MIX_ENV=local iex -S mix phx.server
+# print "${Light_Green}Run crowbar pointed to local ${NO_COLOR}"
+# iex -S mix phx.server
+
+print "${Light_Green}Completed ${NO_COLOR}"
 
 return
