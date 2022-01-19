@@ -18,5 +18,5 @@ brew install universal-ctags
 Currently Elixir and Elm are supported languages so just specify those when running setup in `$HOME`
 
 ```
-ctags -R --languages=-all,+Elm,+Elixir
+ctags -R --languages=-all,+Elm,+Elixir -V
 ```
