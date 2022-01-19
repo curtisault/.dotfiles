@@ -1,4 +1,5 @@
 -R
 --languages=-all,+Elm,+Elixir,+Erlang,+SQL,+Rust,+JSON,+JavaScript,+Haskell
---exclude=Library/Application Support/
+--exclude=Library/Application Support/*
+--exclude=*/.backups/crowbar.sql
 -V
