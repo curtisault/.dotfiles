@@ -1,3 +1,4 @@
+-R
 --languages=-all,+Elm,+Elixir,+Erlang,+SQL,+Rust,+JSON,+JavaScript,+Haskell
 --exclude=Library/Application Support/
 -V
