@@ -37,6 +37,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'sharkdp/fd'
 
+    " ctags
+    Plug 'ludovicchabant/vim-gutentags'
+
     " Themes
     Plug 'morhetz/gruvbox'
     Plug 'kwsp/halcyon-neovim'
@@ -75,6 +78,7 @@ set statusline+=\ %F
 set statusline+=\ [%{&fileformat}\]
 set statusline+=%= "Right side
 set statusline+=%#CursorLineNr#
+set statusline+=%{gutentags#statusline()}
 set statusline+=\ %y
 set statusline+=\ %p%%
 set statusline+=\ %c:%l
@@ -133,6 +137,7 @@ nnoremap <silent><leader>[ :bprevious<CR>
 nnoremap <leader>bd :bp\|bd #<CR>
 nnoremap <silent><leader>fq :q<CR>
 nnoremap <silent><leader>fs :w<CR>
+nnoremap <silent><leader>hs :History<CR>
 nnoremap <silent><leader>qq :qa<CR>
 nnoremap <silent><leader>wd :close<CR>
 nnoremap <silent><leader>wK :sbn<CR>
@@ -188,7 +193,15 @@ nnoremap <Leader>l :TestLast<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" gutentags
+" let g:gutentags_trace = 1 "debugging
+let g:gutentags_ctags_exclude = [
+    \ '.backups/*',
+    \ 'Library/*'
+\]
+
 " file browse
 let g:netrw_browse_split=2
 let g:netrw_winsize=25
 let g:netrw_banner=0
+
