@@ -48,7 +48,7 @@ decoder {
 
 bind_to_address "127.0.0.1"
 port "6600"
-user "jmutai"
+user "curtisault"
 
 # Visualizer
 audio_output {
