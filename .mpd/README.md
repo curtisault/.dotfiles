@@ -1,4 +1,10 @@
-# Setup
+# Music Player Daemon
+
+[Project Site](https://www.musicpd.org/)
+
+[Docs](https://mpd.readthedocs.io/en/latest/user.html)
+
+[IRC](ircs://irc.libera.chat:6697/#mpd)
 
 ## Homebrew
 
