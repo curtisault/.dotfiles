@@ -66,3 +66,29 @@ audio_output {
  use_mmap "yes"
 }
 ```
+
+## Usage Quick Ref
+
+[Docs Ref](https://mpd.readthedocs.io/en/stable/user.html#using-mpd)
+
+### Starting and Stopping MPD
+
+The simplest (but not the best) way to start MPD is to simply type:
+
+```
+mpd
+```
+
+This will start MPD as a daemon process (which means it detaches from your terminal and continues to run in background). To stop it, send SIGTERM to the process; if you have configured a pid_file, you can use the --kill option:
+
+```
+mpd --kill
+```
+
+## The music directory and the database
+
+The “music directory” is where you store your music files. MPD stores all relevant meta information about all songs in its “database”. Whenever you add, modify or remove songs in the music directory, you have to update the database, for example with mpc:
+
+```
+mpc update
+```
