@@ -6,9 +6,9 @@
 
 [IRC](ircs://irc.libera.chat:6697/#mpd)
 
-## Homebrew
+## Installation
 
-### Install
+### Homebrew
 
 ```
 brew {search|install} mpd
