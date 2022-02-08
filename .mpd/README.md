@@ -5,7 +5,7 @@
 ### Install
 
 ```
-brew {search|install} mpd ncmpcpp
+brew {search|install} mpd
 ```
 
 ### Create configs, logs, db, etc
