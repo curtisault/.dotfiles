@@ -1,5 +1,7 @@
 # ncmpcpp
 
+[Project src](https://github.com/ncmpcpp/ncmpcpp)
+
 ### Installation
 
 ```
