@@ -4,7 +4,7 @@ local utils = require('utils')
 utils.map('n', '<esc>', '<cmd>noh<CR>') -- Clear highlights
 
 -- Window Split
-utils.map('n', '<leader>fs', '<cmd>w<CR>')
+utils.map('n', '<leader>fw', '<cmd>w<CR>')
 utils.map('n', '<leader>wl', '<cmd>vsplit<CR>')
 utils.map('n', '<leader>wj', '<cmd>split<CR>')
 utils.map('n', '<leader>wd', '<cmd>close<CR>')
@@ -42,4 +42,3 @@ utils.map('n', '<leader>fs', '<cmd>Telescope grep_string<cr>')
 ------------- Visual -------------
 utils.map('v', '<', '<gv')   -- Window Nav
 utils.map('v', '>', '>gv')   -- Window Nav
-
