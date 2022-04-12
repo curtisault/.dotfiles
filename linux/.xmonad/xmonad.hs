@@ -60,8 +60,8 @@ myWorkspaces    = [" dev \61728 "
                   ," mic \61744/\61589 "
                   ," game \61878 "
                   ," mus \61477 "
-                  ," chat \61574 "
                   ," vid \61515 "
+                  ," chat \61574 "
                   ," sys \61729 "
                   ," doc \61787 "]
 
@@ -83,7 +83,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    , ((modm,               xK_z     ), spawn "dmenu_run")
 
     -- launch rofi
     , ((modm .|. shiftMask, xK_p     ), spawn "rofi -combi-modi window,run,drun -show combi -modi combi")
@@ -354,16 +354,7 @@ main = do
     xmonad =<< xmobar (myConfig xmproc0 xmproc1)
 
 myConfig xmproc0 xmproc1 = def {
-  logHook = dynamicLogWithPP $ xmobarPP {
-    ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
-  , ppTitle = xmobarColor "#FFB6B0" "" . shorten 100               -- Title of active window in xmobar
-  , ppCurrent = xmobarColor "#CEFFAC" "" . wrap "[" "]" -- Current workspace
-  , ppVisible = xmobarColor "#98be65" ""                                  -- Visible but not current workspace
-  , ppHidden = xmobarColor "#82aaff" ""                                   -- Hidden workspaces
-  , ppHiddenNoWindows = xmobarColor "#FFD782" ""                         -- Hidden workspaces (no windows)
-  , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"                    -- Urgent workspace
-  }
-  , manageHook         = manageDocks <+> myManageHook
+    manageHook         = manageDocks <+> myManageHook
   , handleEventHook    = docksEventHook
   , terminal           = terminalEm
   , focusFollowsMouse  = myFocusFollowsMouse
@@ -377,6 +368,13 @@ myConfig xmproc0 xmproc1 = def {
   , mouseBindings      = myMouseBindings
   , layoutHook         = myLayout
   , startupHook        = myStartupHook
+  , logHook = dynamicLogWithPP $ xmobarPP {
+    ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
+  , ppTitle = xmobarColor "#FFB6B0" "" . shorten 80                -- Title of active window in xmobar
+  , ppCurrent = xmobarColor "#CEFFAC" "" . wrap "[" "]"             -- Current workspace
+  , ppVisible = xmobarColor "#98be65" ""                            -- Visible but not current workspace
+  , ppHidden = xmobarColor "#82aaff" ""                             -- Hidden workspaces
+  , ppHiddenNoWindows = xmobarColor "#FFD782" ""                    -- Hidden workspaces (no windows)
+  , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"              -- Urgent workspace
+  }
 }
-
-
