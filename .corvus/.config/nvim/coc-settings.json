@@ -1,0 +1,12 @@
+{
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
+  "languageserver": {
+      "elmLS": {
+        "command": "elm-language-server",
+        "filetypes": ["elm"],
+        "rootPatterns": ["elm.json"]
+      }
+  },
+  "codeLens.enable": true
+}
+
