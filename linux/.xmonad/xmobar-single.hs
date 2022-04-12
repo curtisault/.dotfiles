@@ -1,4 +1,4 @@
-Config { font = "xft:FontAwesome:pixelsize=16:antialias=true:hinting=true,JetBrainsMono:pixelsize=16:antialias=true:hinting=true"
+Config { font = "xft:FontAwesome:pixelsize=20:antialias=true:hinting=true,JetBrainsMono:pixelsize=20:antialias=true:hinting=true"
        , additionalFonts = []
        , borderColor = "black"
        , border = TopB
