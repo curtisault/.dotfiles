@@ -1,0 +1,7 @@
+sudo apt update
+sudo apt upgrade
+sudo apt autoremove
+snap refresh --list
+flatpak upgrade
+flatpak update
+rustup update
