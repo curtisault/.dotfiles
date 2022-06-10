@@ -4,7 +4,6 @@ local utils = require('utils')
 utils.map('n', '<esc>', '<cmd>noh<CR>') -- Clear highlights
 
 -- Window Split
-utils.map('n', '<leader>fw', '<cmd>w<CR>')
 utils.map('n', '<leader>wl', '<cmd>vsplit<CR>')
 utils.map('n', '<leader>wj', '<cmd>split<CR>')
 utils.map('n', '<leader>wd', '<cmd>close<CR>')
@@ -21,14 +20,18 @@ utils.map('n', '<S-Down>', '<cmd>resize +2<CR>')
 utils.map('n', '<S-Left>', '<cmd>vertical resize -2<CR>')
 utils.map('n', '<S-Right>', '<cmd>vertical resize +2<CR>')
 
+-- Buffer Nav
+utils.map('n', '<leader>]', ':bnext<CR>')
+utils.map('n', '<leader>[', ':bprevious<CR>')
+
 -- Tab
 utils.map('n', 'tt', '<c-w>T')
-utils.map('n', 'th', '<cmd>tabfirst<CR>')
-utils.map('n', 'tj', '<cmd>tabnext<CR>')
-utils.map('n', 'tk', '<cmd>tabprev<CR>')
-utils.map('n', 'tl', '<cmd>tablast<CR>')
-utils.map('n', 'tn', '<cmd>tabnew<CR>')
-utils.map('n', 'td', '<cmd>tabclose<CR>')
+utils.map('n', 'th', ':tabfirst<CR>')
+utils.map('n', 'tj', ':tabprev<CR>')
+utils.map('n', 'tk', ':tabnext<CR>')
+utils.map('n', 'tl', ':tablast<CR>')
+utils.map('n', 'tn', ':tabnew<Space>')
+utils.map('n', 'td', ':tabclose<CR>')
 
 -- Adapted from: https://alpha2phi.medium.com/neovim-init-lua-e80f4f136030
 -- Find files using Telescope command-line sugar.
