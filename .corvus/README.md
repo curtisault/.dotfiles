@@ -17,7 +17,7 @@ brew install alacritty vim neovim ctags tmux fzf ripgrep exa bat fd nextdns tldr
 - _Alacritty_:   `brew install alacritty`
 - _VIM_:         `brew install vim`
 - _NeoVim_:      `brew install neovim`
-- _CTAGS_:       `brew install ctags`
+- _CTAGS_:       `brew install ctags` (Not used anymore. Maybe should prolly remove.)
 - _TMUX_:        `brew install tmux`
 - _FZF_:         `brew install fzf`
 - _RIPGREP_:     `brew install ripgrep`
