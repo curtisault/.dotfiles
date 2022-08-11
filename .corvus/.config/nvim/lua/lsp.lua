@@ -47,6 +47,26 @@ local on_attach = function(_, bufnr)
   -- vim.cmd [[inoremap <silent><expr> <C-e> compe#close('<C-e>')]]
   -- vim.cmd [[inoremap <silent><expr> <C-f> compe#scroll({ 'delta': +4 })]]
   -- vim.cmd [[inoremap <silent><expr> <C-d> compe#scroll({ 'delta': -4 })]]
+
+  -- You will likely want to reduce updatetime which affects CursorHold
+  -- note: this setting is global and should be set only once
+  vim.o.updatetime = 250
+  vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+  vim.api.nvim_create_autocmd("CursorHold", {
+    buffer = bufnr,
+    callback = function()
+        local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+        }
+        vim.diagnostic.open_float(nil, opts)
+    end
+  })
 end
 
 -- Finally, let's initialize the Elixir language server
@@ -79,5 +99,3 @@ lspconfig.elixirls.setup({
 require'lspconfig'.elmls.setup({
   on_attach = on_attach
 })
-
-
