@@ -10,7 +10,15 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
+vim.opt.incsearch = true
+
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.ignorecase = true
+
+-- TODO: fix to copy to clipbaord
+-- vim.opt.clipboard = 'unnamed,unnampedplus'
