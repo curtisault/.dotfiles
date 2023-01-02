@@ -4,6 +4,9 @@ vim.keymap.set("n", "<leader>fe", vim.cmd.E)
 ------------- Normal -------------
 vim.keymap.set('n', '<esc>', '<cmd>noh<CR>') -- Clear highlights
 
+------------- Buffers -------------
+vim.keymap.set('n', '<leader>]', ':bnext<CR>')
+vim.keymap.set('n', '<leader>[', ':bprevious<CR>')
 
 -- Window Split
 vim.keymap.set('n', '<leader>wl', '<cmd>vsplit<CR>')
