@@ -20,5 +20,4 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.ignorecase = true
 
--- TODO: fix to copy to clipbaord
--- vim.opt.clipboard = 'unnamed,unnampedplus'
+vim.o.clipboard = 'unnamedplus'
