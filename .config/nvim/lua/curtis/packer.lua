@@ -23,14 +23,14 @@ return require('packer').startup(function(use)
 	  end
   })
 
+  -- Syntax highlighting
+  use 'sheerun/vim-polyglot'
+
   -- Language Parser
   use {
 	  'nvim-treesitter/nvim-treesitter',
 	  run = ':TSUpdate'
   }
-
-  use('tpope/vim-fugitive')
-  use('tpope/vim-commentary')
 
   use {
       'VonHeikemen/lsp-zero.nvim',
@@ -53,4 +53,9 @@ return require('packer').startup(function(use)
           {'rafamadriz/friendly-snippets'},
       }
   }
+
+  use 'tpope/vim-dispatch'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-commentary'
+  use 'folke/neodev.nvim'
 end)
