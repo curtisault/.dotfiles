@@ -20,4 +20,4 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.ignorecase = true
 
-vim.o.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
