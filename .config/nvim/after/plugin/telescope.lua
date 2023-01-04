@@ -10,5 +10,5 @@ end)
 
 -- TODO: find_files w/ fd
 -- vim.keymap.set('n', '<leader>fd', function()
--- 	builtin.find_files({ search = vim.fn.input("")});
+-- 	builtin.find_files({ search = vim.fn.input("fd > ")});
 -- end)
