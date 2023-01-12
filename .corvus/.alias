@@ -30,14 +30,6 @@ else
     print "${Light_Red}404: $HOME/.emojis not found.${NO_COLOR}"
 fi
 
-
-
-# Dependencies: 
-#   Languages:  elm, elixir 
-#   Databases:  postgres
-#   Editors:    emacs, neovim
-#   Terminal:   bat, exa, neovim, fzf
-
 alias l=$LS
 alias rtwe=$RECOMPILE_THE_WHOLE_ENCHILADA
 alias cc=$COMPILE_CROWBAR
@@ -56,10 +48,11 @@ alias e='emacs -nw'
 alias sz="source $HOME/.zshrc"
 alias glp=$GIT_LOG_PRETTY
 alias pg_set_local=$PG_SET_LOCAL_ENV
-alias pg_set_staging=$PG_SET_STAGING_ENV
+alias psql_crowbar_staging=$CONNECT_CROWBAR_STAGING
+alias psql_scan_staging=$CONNECT_SCAN_STAGING
 alias beaminfo='pidinfo beam'
 alias killbeam='pidkill beam'
-alias tshark_http_head=$TSHARK_HTTP_HEAD
+alias welcome=$WELCOME
 # alias info_and_versions="echo 'OS: $OSTYPE' && echo 'elmLS: $(elm-language-server -v)' && echo 'node: $(node -v)' && echo '$(elixir -v)'"
 
 CROWBAR_PROJ_DIR=$HOME/Projects/crowbar
@@ -69,7 +62,7 @@ LAPTOP_PROJ_DIR=$HOME/Projects/laptop
 RUN_CROWBAR_STAGING_DB='MIX_DB=staging iex -S mix phx.server'
 RUN_CROWBAR_LOCAL_DB='iex -S mix phx.server'
 
-ELM_REVIEW="elm-analyse && elm-review"
+ELM_REVIEW="elm-review"
 
 RESTART_DOCKER="docker-compose kill && docker-compose up -d"
 
@@ -81,11 +74,13 @@ REINSTALL_CROWBAR_DEPS="cd $LAPTOP_PROJ_DIR && \
 RECOMPILE_THE_WHOLE_ENCHILADA="fancy_echo '${RADIOACTIVE}${RADIOACTIVE}${RADIOACTIVE} Recompiling the whole enhilada\n' && \
     cd $CROWBAR_PROJ_DIR && \
     rm -rf assets/node_modules && \
+    rm -rf assets/elm-stuff && \
     yarn cache clean && \
     yarn && \
     mix do clean, deps.get && \
     mix format && \
     mix lint && \
+    mix i18n_to_elm && \
     mix compile --warnings-as-errors && \
     mix graphql && \
     MIX_ENV=test mix ecto.drop, ecto.create, ecto.migrate && \
@@ -96,6 +91,7 @@ COMPILE_CROWBAR="yarn && \
     mix do clean, deps.get && \
     mix format && \
     mix lint && \
+    mix i18n_to_elm && \
     mix compile --warnings-as-errors && \
     mix graphql"
 
@@ -104,32 +100,29 @@ PG_SET_LOCAL_ENV="fancy_echo '${WAFFLE}${WAFFLE}${WAFFLE} Setting Postgres Local
     export PGUSER=${LOCAL_PG_USER}; \
     export PGPASSWORD=${LOCAL_PG_PASSWORD};"
 
-PG_SET_STAGING_ENV="fancy_echo '${WAFFLE}${WAFFLE}${WAFFLE} Setting Postgres Staging Env...\n' && \
-    export PGHOST=${STAGING_PG_HOST}; \
-    export PGUSER=${STAGING_PG_USER}; \
-    export PGPASSWORD=${STAGING_PG_PASSWORD};"
+CONNECT_CROWBAR_STAGING='psql $(aws secretsmanager get-secret-value --secret-id user_crowbar/crowbar-db/postgres/dev-and-support | jq -r ".SecretString" | jq ".primary_uri" --raw-output)'
+CONNECT_SCAN_STAGING='psql $(aws secretsmanager get-secret-value --secret-id user_crowbar/scan-db/postgres/dev-and-support | jq -r ".SecretString" | jq ".primary_uri" --raw-output)'
+
 
 GIT_LOG_PRETTY="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
 
-DROP_AND_RE_TEST="MIX_DB=test mix ecto.drop && mix test"
+DROP_AND_RE_TEST="MIX_ENV=test \
+    mix do ecto.drop --quiet, \
+    ecto.create --quiet, \
+    ecto.migrate --quiet && \
+    mix test"
 
 LS="exa -F -l -a --group-directories-first --colour-scale"
 
-TSHARK_HTTP_HEAD='tshark \
-    -Y "http.request.method == \"GET\" or \
-        http.request.method == \"POST\" or \
-        http.request.method == \"PUT\" or \
-        http.request.method == \"DELETE\"" \
-    -T fields \
-        -e http.request.method \
-        -e http.request.version \
-        -e http.request.uri \
-    | head -n 1'
-
+WELCOME="toilet 'WELCOME' --metal"
 
 # funcs
 pidkill() { kill -9 $(pgrep $1) }
 pidinfo() { ps -p $(pgrep $1) }
+
+ggb() {
+    git grep -E -n $1 | while IFS=: read i j k; do git blame -L $j,$j $i | cat; done
+}
 
 
 
@@ -151,4 +144,3 @@ Cyan='\033[0;36m'
 Light_Cyan='\033[1;36m'
 Light_Gray='\033[0;37m'
 White='\033[1;37m'
-
