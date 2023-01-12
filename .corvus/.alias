@@ -48,11 +48,10 @@ alias e='emacs -nw'
 alias sz="source $HOME/.zshrc"
 alias glp=$GIT_LOG_PRETTY
 alias pg_set_local=$PG_SET_LOCAL_ENV
-alias psql_crowbar_staging=$CONNECT_CROWBAR_STAGING
-alias psql_scan_staging=$CONNECT_SCAN_STAGING
+alias psql_crowbar_staging='psql_staging_connect crowbar-db'
+alias psql_scan_staging='psql_staging_connect scan-db'
 alias beaminfo='pidinfo beam'
 alias killbeam='pidkill beam'
-alias welcome=$WELCOME
 # alias info_and_versions="echo 'OS: $OSTYPE' && echo 'elmLS: $(elm-language-server -v)' && echo 'node: $(node -v)' && echo '$(elixir -v)'"
 
 CROWBAR_PROJ_DIR=$HOME/Projects/crowbar
@@ -100,10 +99,6 @@ PG_SET_LOCAL_ENV="fancy_echo '${WAFFLE}${WAFFLE}${WAFFLE} Setting Postgres Local
     export PGUSER=${LOCAL_PG_USER}; \
     export PGPASSWORD=${LOCAL_PG_PASSWORD};"
 
-CONNECT_CROWBAR_STAGING='psql $(aws secretsmanager get-secret-value --secret-id user_crowbar/crowbar-db/postgres/dev-and-support | jq -r ".SecretString" | jq ".primary_uri" --raw-output)'
-CONNECT_SCAN_STAGING='psql $(aws secretsmanager get-secret-value --secret-id user_crowbar/scan-db/postgres/dev-and-support | jq -r ".SecretString" | jq ".primary_uri" --raw-output)'
-
-
 GIT_LOG_PRETTY="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
 
 DROP_AND_RE_TEST="MIX_ENV=test \
@@ -114,8 +109,6 @@ DROP_AND_RE_TEST="MIX_ENV=test \
 
 LS="exa -F -l -a --group-directories-first --colour-scale"
 
-WELCOME="toilet 'WELCOME' --metal"
-
 # funcs
 pidkill() { kill -9 $(pgrep $1) }
 pidinfo() { ps -p $(pgrep $1) }
@@ -124,6 +117,13 @@ ggb() {
     git grep -E -n $1 | while IFS=: read i j k; do git blame -L $j,$j $i | cat; done
 }
 
+psql_staging_connect() {
+    psql $(\
+        aws secretsmanager get-secret-value --secret-id user_crowbar/$1/postgres/dev-and-support |\
+        jq -r ".SecretString" |\
+        jq ".primary_uri" --raw-output \
+        )
+}
 
 
 # colors (ANSI escape codes)
