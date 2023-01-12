@@ -31,6 +31,7 @@ else
 fi
 
 alias l=$LS
+alias login='. ${LAPTOP_PROJ_DIR}/login_aws.zsh'
 alias rtwe=$RECOMPILE_THE_WHOLE_ENCHILADA
 alias cc=$COMPILE_CROWBAR
 alias rc=$RUN_CROWBAR_LOCAL_DB
