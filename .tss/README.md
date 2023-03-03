@@ -1,4 +1,5 @@
-![image](https://user-images.githubusercontent.com/7681962/222839536-2f5cf512-a54d-4060-bc00-6eedb00f7a3d.png)
+![image](https://user-images.githubusercontent.com/7681962/222839779-b3949c07-abad-4731-8573-6202d1e2bbda.png)
+
 
 My TSS Configs
 
