@@ -13,7 +13,7 @@ My TSS Configs
 
 **Install All**: 
 ```
-brew install alacritty vim neovim tmux fzf ripgrep exa bat fd nextdns tldr iproute2mac
+brew install alacritty vim neovim tmux fzf ripgrep exa bat fd tldr iproute2mac
 ```
 - _Alacritty_:   `brew install alacritty`
 - _VIM_:         `brew install vim`
@@ -24,7 +24,6 @@ brew install alacritty vim neovim tmux fzf ripgrep exa bat fd nextdns tldr iprou
 - _EXA_:         `brew install exa`
 - _BAT_:         `brew install bat`
 - _FD_:          `brew install fd`
-- _NextDNS_:     `brew install nextdns`
 - _TLDR_:        `brew install tldr`
 - _iproute2mac_: `brew install iproute2mac`
 
