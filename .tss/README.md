@@ -13,7 +13,7 @@ My TSS Configs
 
 **Install All**: 
 ```
-brew install alacritty vim neovim tmux fzf ripgrep exa bat fd tldr iproute2mac
+brew install alacritty git vim neovim tmux fzf ripgrep exa bat fd tldr iproute2mac
 ```
 - _Alacritty_:   `brew install alacritty`
 - _Git_:         `brew install git`
