@@ -1,0 +1,23 @@
+
+alias cs=$COMPILE_SANDDRIVE
+alias e='emacs -nw'
+alias glp=$GIT_LOG_PRETTY
+alias sz="source $HOME/.zshrc"
+alias beaminfo='pidinfo beam'
+alias killbeam='pidkill beam'
+
+SD_PROJ_DIR=$HOME/projects/SandDrive
+
+GIT_LOG_PRETTY="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
+
+COMPILE_SANDDRIVE=" cd $SD_PROJ_DIR/web/assets && \
+    npm install && \
+    cd $SD_PROJ_DIR/web && \
+    mix do clean, deps.get && \
+    mix format && \
+    mix lint && \
+    mix compile --warnings-as-errors"
+
+# funcs
+pidkill() { kill -9 $(pgrep $1) }
+pidinfo() { ps -p $(pgrep $1) }
