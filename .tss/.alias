@@ -1,7 +1,7 @@
 
 alias cs=$COMPILE_SANDDRIVE
 alias e='emacs -nw'
-alias glp=$GIT_LOG_PRETTY
+alias git_pretty=$GIT_LOG_PRETTY
 alias sz="source $HOME/.zshrc"
 alias beaminfo='pidinfo beam'
 alias killbeam='pidkill beam'
