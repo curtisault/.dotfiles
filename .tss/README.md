@@ -45,7 +45,7 @@ fi
 
 # Secrets
 
-A secrets file is required. You have to create this locally and store values given to you there.
+Currently no secrets required.
 e.g. Github token
 
 The secrets file is used in the alias file to set env vars.
