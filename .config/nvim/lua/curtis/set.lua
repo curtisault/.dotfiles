@@ -21,3 +21,6 @@ vim.opt.splitbelow = true
 vim.opt.ignorecase = true
 
 vim.opt.clipboard = 'unnamedplus'
+
+vim.opt.background = 'dark'
+vim.g.everforest_background = 'medium'
