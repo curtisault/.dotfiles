@@ -37,3 +37,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 lsp.nvim_workspace()
 
 lsp.setup()
+
+-- auto format on save
+vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
