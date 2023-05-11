@@ -24,7 +24,6 @@ brew install alacritty git vim neovim tmux fzf ripgrep exa bat fd tldr iproute2m
 - _RIPGREP_:     `brew install ripgrep`
 - _FD_:          `brew install fd`
 - _TLDR_:        `brew install tldr`
-- _iproute2mac_: `brew install iproute2mac`
 
 **Show All**: `brew list`
 
