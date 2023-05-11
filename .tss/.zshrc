@@ -9,6 +9,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export OP_PASSWORD=$OP_PASSWORD
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -109,6 +110,8 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
+export PATH=~/.config/emacs/bin:$PATH
+export PATH=/opt/homebrew/opt/sqlite/bin:$PATH
 
 . "$HOME/.asdf/asdf.sh"
 # append completions to fpath
@@ -124,3 +127,10 @@ export PATH=/Users/curtisault/.asdf/shims/python:$PATH
 
 # Needed for 1Password completion
 eval "$(op completion zsh)"; compdef _op op
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# https://github.com/cowsay-org/cowsay
+source ~/.bender_quotes | cowsay -f bender
