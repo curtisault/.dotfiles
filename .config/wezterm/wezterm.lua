@@ -22,7 +22,8 @@ config.native_macos_fullscreen_mode = true
 
 config.font = wezterm.font 'JetBrains Mono'
 
-config.window_background_image = '/Users/curtisault/.config/wezterm/wallpapers/mt_fuji_night_4k.jpg'
+-- image can be found here: https://github.com/EndeavourOS-Community-Editions/Community-wallpapers/blob/main/eos_wallpapers_community/LAUNCH-SUNSET.png
+config.window_background_image = '/Users/curtisault/.config/wezterm/wallpapers/LAUNCH-SUNSET.png'
 
 -- config.window_background_gradient = {
 --   -- Can be "Vertical" or "Horizontal".  Specifies the direction
