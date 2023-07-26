@@ -4,6 +4,15 @@ local wezterm = require 'wezterm'
 -- This table will hold the configuration.
 local config = {}
 
+-- Grab whatever wallpapers you want, set the base path, swap images out for existing files in dir.
+local base_wallpaper_path = '/Users/curtisault/.config/wezterm/wallpapers/'
+local images = { 'LAUNCH-SUNSET.png', 'arch_linux_1.png', 'witcher_1.jpg' }
+
+function random_background ()
+  return base_wallpaper_path .. images[math.random(1, #images)]
+end
+
+
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 if wezterm.config_builder then
@@ -22,8 +31,7 @@ config.native_macos_fullscreen_mode = true
 
 config.font = wezterm.font 'JetBrains Mono'
 
--- image can be found here: https://github.com/EndeavourOS-Community-Editions/Community-wallpapers/blob/main/eos_wallpapers_community/LAUNCH-SUNSET.png
-config.window_background_image = '/Users/curtisault/.config/wezterm/wallpapers/LAUNCH-SUNSET.png'
+config.window_background_image = random_background()
 
 -- config.window_background_gradient = {
 --   -- Can be "Vertical" or "Horizontal".  Specifies the direction
