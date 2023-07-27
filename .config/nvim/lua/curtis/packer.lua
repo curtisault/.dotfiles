@@ -28,8 +28,12 @@ return require('packer').startup(function(use)
 
   -- Language Parser
   use {
-	  'nvim-treesitter/nvim-treesitter',
-	  run = ':TSUpdate'
+          'nvim-treesitter/nvim-treesitter',
+          run = ':TSUpdate'
+  }
+
+  use { 'nvim-lualine/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
 
   use {
