@@ -24,7 +24,11 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
+    lualine_c = {
+      -- 0 = just filename, 1 = relative path, 2 = absolute path
+      {'filename', path = 1}, 
+      'filesize'
+    },
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
