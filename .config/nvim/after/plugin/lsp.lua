@@ -21,7 +21,8 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
     vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, {})
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, {})
-    -- lsp_zero.default_keymaps({buffer = bufnr})
+    vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {})
+    vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', {})
 end)
 
 -- Uncomment (if not using Mason) to manually setup each LS
