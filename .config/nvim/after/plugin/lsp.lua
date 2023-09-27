@@ -1,13 +1,4 @@
-local lsp = require('lsp-zero')
-
-lsp.preset('recommended')
-
-lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  -- 'sumneko_lua',
-  'rust_analyzer'
-})
+local lsp_zero = require('lsp-zero')
 
 -- open error on hover
 vim.api.nvim_create_autocmd('CursorHold', {
@@ -24,19 +15,26 @@ vim.api.nvim_create_autocmd('CursorHold', {
     end,
 })
 
--- if a language server is running print info
-vim.api.nvim_create_autocmd('LspAttach', {
-    callback = function(args)
-        vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-    end,
+lsp_zero.on_attach(function(client, bufnr)
+    vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, {})
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
+    vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, {})
+    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, {})
+    -- lsp_zero.default_keymaps({buffer = bufnr})
+end)
+
+-- Uncomment (if not using Mason) to manually setup each LS
+-- local lua_opts = lsp_zero.nvim_lua_ls()
+-- require('lspconfig').lua_ls.setup(lua_opts)
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {
+      'elixirls',
+      'rust_analyzer'
+  },
+  handlers = {
+    lsp_zero.default_setup,
+  },
 })
-
-lsp.nvim_workspace()
-
-lsp.setup()
-
--- auto format on save
-vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
