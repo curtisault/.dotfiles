@@ -1,4 +1,5 @@
 require("curtis.lazy")
 require("curtis.remap")
 require("curtis.set")
+require("curtis.telescope")
 require("curtis.lualine")
