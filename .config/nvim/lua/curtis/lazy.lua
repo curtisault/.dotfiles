@@ -18,6 +18,7 @@ local plugins = {
 
   -- Color scheme
   'neanias/everforest-nvim',
+  { "ellisonleao/gruvbox.nvim", priority = 1000 },
 
   -- Getting Fuzzy
   {
@@ -34,11 +35,15 @@ local plugins = {
   --- LSP Zero Setup
   {'williamboman/mason.nvim'},
   {'williamboman/mason-lspconfig.nvim'},
-  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
+  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false},
   {'neovim/nvim-lspconfig'},
+
+  -- completion
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
   {'L3MON4D3/LuaSnip'},
+  {'saadparwaiz1/cmp_luasnip'},
+  {'rafamadriz/friendly-snippets'},
 
   -- Language Parser
   'nvim-treesitter/nvim-treesitter',
