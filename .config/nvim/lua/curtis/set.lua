@@ -22,5 +22,10 @@ vim.opt.ignorecase = true
 
 vim.opt.clipboard = 'unnamedplus'
 
+-- vim.cmd.colorscheme "everforest"
+vim.cmd.colorscheme "gruvbox"
 vim.opt.background = 'dark'
-vim.g.everforest_background = 'medium'
+vim.g.everforest_background = 'soft'
+
+-- vim.opt.background = 'light'
+-- vim.g.everforest_background = 'hard'
