@@ -13,17 +13,18 @@ My TSS Configs
 
 **Install All**: 
 ```
-brew install alacritty git vim neovim tmux fzf ripgrep exa bat fd tldr iproute2mac
+brew install git vim neovim tmux fzf ripgrep exa bat fd tldr pass bandwich
 ```
-- _Alacritty_:   `brew install alacritty`
-- _Git_:         `brew install git`
-- _VIM_:         `brew install vim`
-- _NeoVim_:      `brew install neovim`
-- _TMUX_:        `brew install tmux`
-- _FZF_:         `brew install fzf`
-- _RIPGREP_:     `brew install ripgrep`
-- _FD_:          `brew install fd`
-- _TLDR_:        `brew install tldr`
+- _Git_:         `brew info git`
+- _VIM_:         `brew info vim`
+- _NeoVim_:      `brew info neovim`
+- _TMUX_:        `brew info tmux`
+- _FZF_:         `brew info fzf`
+- _RIPGREP_:     `brew info ripgrep`
+- _FD_:          `brew info fd`
+- _TLDR_:        `brew info tldr`
+- _Pass_:        `brew info pass`
+- _Bandwich:     `brew info bandwich`
 
 **Show All**: `brew list`
 
