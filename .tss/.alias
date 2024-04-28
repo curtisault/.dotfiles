@@ -17,6 +17,8 @@ alias op_signin='echo "Signing into 1Password" && eval $(echo $OP_PASSWORD | op 
 alias webpack_script='$SD_PROJ_DIR/web/assets/node_modules/webpack/bin/webpack.js --watch --color --progress --mode development'
 alias nfzf='nvim $(fzf)'
 alias release_dev='MIX_ENV=dev mix release --overwrite'
+alias env="env -0 | sort -z | tr '\0' '\n'"
+
 
 SD_PROJ_DIR=$HOME/projects/SandDrive
 
