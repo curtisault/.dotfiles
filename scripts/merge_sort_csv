@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Take two files with the same headers and merge them into a single file
+
 # Ensure the script is called with three arguments
 if [ "$#" -ne 3 ]; then
     echo "Usage: $0 file1 file2 outputfile"
