@@ -11,6 +11,12 @@ file1="$1"
 file2="$2"
 outputfile="$3"
 
+# Check if headers are identical
+if [ "$(head -n 1 "$file1")" != "$(head -n 1 "$file2")" ]; then
+    echo "Error: Headers of the two files do not match."
+    return
+fi
+
 # Merge the files, sort the data, and write to the output file
 (echo "$(head -n 1 "$file1")"; (tail -n +2 "$file1"; tail -n +2 "$file2") | sort) > "$outputfile"
 
