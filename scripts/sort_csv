@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Take two files with the same headers and merge them into a single file
+
+# Assign the arguments to variables
+file1="$1"
+
+# Merge the files, sort the data, and write to the output file
+(echo "$(head -n 1 "$file1")"; tail -n +2 "$file1" | sort) > "$file1"
+
+echo "Merged and sorted data saved to $file1"
