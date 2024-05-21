@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Ensure the script is called with three arguments
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 file1 file2 outputfile"
+    exit 1
+fi
+
+# Assign the arguments to variables
+file1="$1"
+file2="$2"
+outputfile="$3"
+
+# Merge the files, sort the data, and write to the output file
+(echo "$(head -n 1 "$file1")"; (tail -n +2 "$file1"; tail -n +2 "$file2") | sort) > "$outputfile"
+
+echo "Merged and sorted data saved to $outputfile"
