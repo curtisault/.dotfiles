@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Take two files with the same headers and merge them into a single file
+# EXAMPLE
+# . merge_sort_csv file1 file2 outputfile
 
 # Ensure the script is called with three arguments
 if [ "$#" -ne 3 ]; then
