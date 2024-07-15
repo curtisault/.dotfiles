@@ -5,6 +5,12 @@ else
     print "${Light_Red}404: $HOME/.secrets not found.${NO_COLOR}"
 fi
 
+if [ -f $HOME/.functions ]; then
+    source $HOME/.functions
+else
+    print "${Light_Red}404: $HOME/.secrets not found.${NO_COLOR}"
+fi
+
 alias cs=$COMPILE_SANDDRIVE
 alias e='emacs -nw'
 alias git_pretty=$GIT_LOG_PRETTY
@@ -32,10 +38,3 @@ COMPILE_SANDDRIVE=" cd $SD_PROJ_DIR/web/assets && \
     mix format && \
     mix compile --warnings-as-errors && \
     cd $SD_PROJ_DIR"
-
-# funcs
-pidkill() { kill -9 $(pgrep $1) }
-pidinfo() { ps -p $(pgrep $1) }
-mix_test_file() { fswatch lib test | mix test $1 --listen-on-stdin }
-db_port_forward() { kubectl --context tss-dev-admin -n review-app port-forward svc/review-app-db-$1 15432:5432}
-
