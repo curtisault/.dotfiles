@@ -1,0 +1,161 @@
+#!/bin/bash
+
+: '
+Helper functions for bash because my brain is too pequeño to remember all of this.
+
+NOTE: For grabbing function name in bash, use ${FUNCNAME[0]} instead of ${funcstack[1]} as that is used for ZSH.
+'
+
+pidkill() { 
+    local proc_name=$1
+    kill -9 $(pgrep $proc_name) 
+}
+
+pidinfo() { 
+    local proc_name=$1
+    ps -p $(pgrep $proc_name) 
+}
+
+mix_test_file() { 
+    fswatch lib test | mix test $1 --listen-on-stdin 
+}
+
+: '
+Function: db_port_forward
+
+Usage: db_port_forward <context> <resource> [port]
+
+Summary
+
+The db_port_forward function is designed to set up port forwarding for a database service running in a Kubernetes cluster. 
+It performs the following steps:
+
+1.	Parameter Validation:
+  •	Checks if the required parameters (context and resource) are provided.
+  •	If not, prints an error message and usage information, and exits with a status code of 1.
+
+2.	Local Variable Assignment:
+  •	Assigns the first parameter to context.
+  •	Assigns the second parameter to resource.
+  •	Assigns the third parameter to port, defaulting to 15433 if not provided.
+
+3.	Port Forwarding:
+  •	Uses the kubectl command to set up port forwarding from the local port to port 5432 on the specified resource in the db-proxy namespace, using the specified context.
+'
+db_port_forward() { 
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        printf "%s\n" "Usage: ${funcstack[1]} <context> <resource> [port]"
+        __ask_for_kubectl_help
+        return 1
+    fi
+
+    local context=$1
+    local resource=$2
+    local port=${3:-15433}
+
+    kubectl --context ${context} -n db-proxy port-forward ${resource} ${port}:5432
+}
+
+git_author_log_commits() {
+    if [ -z "$1" ]; then
+        printf "%s\n" "Error: Missing parameters."
+        printf "%s\n" "Usage: ${funcstack[1]} <author>"
+        return 1
+    fi
+
+    local author=$1
+
+    git log --reverse --decorate --oneline --date=short \
+    --pretty=format:'%C(yellow)%h%Creset %C(green)%ad%Creset %C(bold blue)<%an>%Creset %C(auto)%d%Creset %s' \
+    --author="$author"
+}
+
+git_author_log_between_commits() {
+    if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+        printf "%s\n" "Error: Missing parameters."
+        printf "%s\n" "Usage: ${funcstack[1]} <author> <first_commit> <second_commit>"
+        return 1
+    fi
+
+    local author=$1
+    local first_commit=$2
+    local second_commit=$3
+
+    git log --reverse --decorate --oneline --date=short \
+    --pretty=format:'%C(yellow)%h%Creset %C(green)%ad%Creset %C(bold blue)<%an>%Creset %C(auto)%d%Creset %s' \
+    --author="$author" \
+    $first_commit..$second_commit
+}
+
+: '
+Usage: ffmpeg_make_gif <input_file> <output_file>
+Example: ffmpeg_make_gif input.mp4 output.gif
+This will create a gif from the input file with a framerate of 34 and a scale of 320
+
+Breakdown of the ffmpeg command:
+
+	•	-ss 30: Seeks to 30 seconds into the input file.
+	•	-t 3: Specifies the duration of the output to be 3 seconds.
+	•	-i $in_file: Specifies the input file (the video file to be converted).
+
+Video Filter (-vf) Options:
+
+	•	fps=34: Sets the frame rate to 34 frames per second.
+	•	scale=320:-1:flags=lanczos: Rescales the video to a width of 320 pixels, maintaining the aspect ratio (height is calculated automatically). The lanczos flag is used for high-quality scaling.
+	•	split[s0][s1]: Splits the video stream into two streams, s0 and s1.
+	•	[s0]palettegen[p]: Generates a color palette from the s0 stream and assigns it to a label p.
+	•	[s1][p]paletteuse: Applies the generated palette p to the s1 stream to optimize the GIF colors.
+
+Output Options:
+
+	•	-loop 0: Sets the GIF to loop infinitely.
+	•	$out_file: Specifies the output file (the resulting GIF).
+'
+ffmpeg_make_gif() { 
+    if ! command -v ffmpeg &> /dev/null; then
+        printf "%s\n" "ffmpeg not found. Install ffmpeg and try again"
+        return 1
+    fi
+
+    local in_file=$1
+    local out_file=$2
+
+    ffmpeg -ss 30 -t 3 -i $in_file \
+    -vf "fps=34,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+    -loop 0 $out_file
+}
+
+function __ask_for_kubectl_help() {
+    local response
+
+    while true; do
+        printf "%s" "Would you like to see some kubectl helper commands? [Yy]/[Nn]: "
+
+        if [[ -n $ZSH_VERSION ]]; then
+            read -q response
+            echo # This is needed to add a newline after the read command in ZSH
+        elif [[ -n $BASH_VERSION ]]; then
+            read -r response
+        fi
+
+        case $response in
+            [Yy]* )
+                __print_kubectl_helpers
+                break
+                ;;
+            [Nn]* )
+                echo "Skipping helpful information."
+                break
+                ;;
+            * )
+                echo "Please answer y or n."
+                ;;
+        esac
+    done
+}
+
+function __print_kubectl_helpers() {
+    printf "%s\n" "Get Namespaces: kubectl get namespaces"
+    printf "%s\n" "Get Pods: kubectl get pods -n <namespace>"
+    printf "%s\n" "Get Services: kubectl get services -n <namespace>"
+}
