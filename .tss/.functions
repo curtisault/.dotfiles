@@ -21,6 +21,52 @@ mix_test_file() {
 }
 
 : '
+Components:
+
+	1.	kubectl: This is the command-line tool for interacting with Kubernetes clusters.
+	2.	--context ${context}: Specifies the Kubernetes context to use. A context in Kubernetes includes the cluster, user, and namespace information. The variable ${context} should be replaced with the name of the context you want to use.
+	3.	--namespace ${namespace}: Specifies the namespace within the Kubernetes cluster from which you want to fetch the logs. The variable ${namespace} should be replaced with the name of the namespace.
+	4.	logs -f ${pod}:
+        • logs: This subcommand fetches the logs from a specified pod.
+        • -f: This option stands for “follow” and keeps the connection open, streaming the logs in real-time as new log entries are generated.
+        • ${pod}: The name of the pod from which you want to fetch and stream logs. The variable ${pod} should be replaced with the actual pod name.
+
+	5.	|: This is a pipe operator, which takes the output of the command on its left and uses it as the input for the command on its right.
+	6.	lnav: Log Navigator (lnav) is a tool for viewing and analyzing log files. By piping the logs into lnav, you can take advantage of its features for better readability and analysis of log data.
+
+Summary:
+
+The entire command performs the following actions:
+
+	1.	Connects to the specified Kubernetes context.
+	2.	Selects the specified namespace within that context.
+	3.	Fetches and streams logs in real-time from the specified pod.
+	4.	Pipes the streamed logs into the lnav tool for enhanced viewing and analysis.
+
+This is useful for monitoring and troubleshooting applications running in a Kubernetes cluster, as it allows you to see log entries as they are generated and use lnav’s capabilities to filter, search, and navigate through the log data efficiently.
+'
+function inspect_pod_logs() { 
+    if ! command -v lnav &> /dev/null; then
+        printf "%s\n" "lnav not found. Install lnav and try again."
+        return 1
+    fi
+
+    if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+        printf "%s\n" "Usage: ${funcstack[1]} <context> <namespace> <pod>"
+        __ask_for_kubectl_help
+        return 1
+    fi
+
+    local context=$1
+    local namespace=$2
+    local pod=$3
+
+    kubectl --context ${context} --namespace ${namespace} logs -f ${pod} | lnav
+}
+
+
+
+: '
 Function: db_port_forward
 
 Usage: db_port_forward <context> <resource> [port]
@@ -42,7 +88,7 @@ It performs the following steps:
 3.	Port Forwarding:
   •	Uses the kubectl command to set up port forwarding from the local port to port 5432 on the specified resource in the db-proxy namespace, using the specified context.
 '
-db_port_forward() { 
+function db_port_forward() { 
     if [ -z "$1" ] || [ -z "$2" ]; then
         printf "%s\n" "Usage: ${funcstack[1]} <context> <resource> [port]"
         __ask_for_kubectl_help
@@ -56,7 +102,7 @@ db_port_forward() {
     kubectl --context ${context} -n db-proxy port-forward ${resource} ${port}:5432
 }
 
-git_author_log_commits() {
+function git_author_log_commits() {
     if [ -z "$1" ]; then
         printf "%s\n" "Error: Missing parameters."
         printf "%s\n" "Usage: ${funcstack[1]} <author>"
@@ -70,7 +116,7 @@ git_author_log_commits() {
     --author="$author"
 }
 
-git_author_log_between_commits() {
+function git_author_log_between_commits() {
     if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
         printf "%s\n" "Error: Missing parameters."
         printf "%s\n" "Usage: ${funcstack[1]} <author> <first_commit> <second_commit>"
@@ -111,9 +157,9 @@ Output Options:
 	•	-loop 0: Sets the GIF to loop infinitely.
 	•	$out_file: Specifies the output file (the resulting GIF).
 '
-ffmpeg_make_gif() { 
+function ffmpeg_make_gif() { 
     if ! command -v ffmpeg &> /dev/null; then
-        printf "%s\n" "ffmpeg not found. Install ffmpeg and try again"
+        printf "%s\n" "ffmpeg not found. Install ffmpeg and try again."
         return 1
     fi
 
