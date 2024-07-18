@@ -24,7 +24,7 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_b = {'searchcount', 'selectioncount', 'branch', 'diff', 'diagnostics'},
     lualine_c = {
       -- 0 = just filename, 1 = relative path, 2 = absolute path
       {'filename', path = 1}, 
