@@ -6,12 +6,18 @@ local config = {}
 
 -- Grab whatever wallpapers you want, set the base path, swap images out for existing files in dir.
 local base_wallpaper_path = '/Users/curtisault/.config/wezterm/wallpapers/'
-local images = { 'LAUNCH-SUNSET.png', 'arch_linux_1.png', 'witcher_1.jpg' }
+local images = { 
+    -- 'LAUNCH-SUNSET.png', 
+    'arch_linux_1.png', 
+    'astronaut-space-artwork.jpg', 
+    'fedora-29-background-wallpaper.jpg',  
+    'linux-gnu-unix.jpg',  
+    'oni-mask-illustration.jpg'  
+}
 
 function random_background ()
   return base_wallpaper_path .. images[math.random(1, #images)]
 end
-
 
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
@@ -19,11 +25,13 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
 -- config.color_scheme = 'Batman'
 
+-- config.window_background_image = random_background()
 config.enable_scroll_bar = true
 config.min_scroll_bar_height = '2cell'
 
@@ -31,7 +39,10 @@ config.native_macos_fullscreen_mode = true
 
 config.font = wezterm.font 'JetBrains Mono'
 
-config.window_background_image = random_background()
+config.window_decorations = "INTEGRATED_BUTTONS"
+
+
+config.window_background_opacity = 0.75
 
 -- config.window_background_gradient = {
 --   -- Can be "Vertical" or "Horizontal".  Specifies the direction
