@@ -19,8 +19,9 @@ local plugins = {
     -- Color schemes
     'neanias/everforest-nvim',
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { 'ellisonleao/gruvbox.nvim', priority = 1000 },
+    { "ellisonleao/gruvbox.nvim", priority = 1000 },
     { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {} },
+    { "EdenEast/nightfox.nvim" },
 
     -- Getting Fuzzy
     {
@@ -97,6 +98,13 @@ local plugins = {
         --   If not available, we use `mini` as the fallback
         "rcarriga/nvim-notify",
         }
+    },
+
+    -- MARKDOWN
+    {
+      'MeanderingProgrammer/render-markdown.nvim',
+      opts = {},
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
     },
 
     -- Copilot
