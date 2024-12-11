@@ -1,5 +1,5 @@
 vim.api.nvim_create_user_command("MessagesWindow", function()
-    vim.cmd("new")
+    vim.cmd("vnew")
     vim.cmd("setlocal buftype=nofile")
     vim.cmd("setlocal bufhidden=wipe")
     vim.cmd("setlocal noswapfile")
