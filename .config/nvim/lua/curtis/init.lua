@@ -1,3 +1,4 @@
+require("curtis.commands")
 require("curtis.lazy")
 require("curtis.remap")
 require("curtis.set")
