@@ -1,0 +1,23 @@
+# The syntax is "key = value". The whitespace around the equals doesn't matter.
+# Comments start with a `#` and are only valid on their own line.
+# Blank lines are ignored!
+
+keybind = ctrl+z=close_surface
+keybind = ctrl+d=new_split:right
+
+# Empty values reset the configuration to the default value
+
+font-family = "JetBrains Mono"
+font-family-bold = "JetBrains Mono"
+font-family-italic = "JetBrains Mono"
+font-family-bold-italic = "JetBrains Mono"
+
+# window-decoration = false
+macos-titlebar-style = hidden
+macos-non-native-fullscreen = true
+resize-overlay = never
+
+theme = catppuccin-frappe
+
+window-padding-x = 4
+window-padding-y = 4
