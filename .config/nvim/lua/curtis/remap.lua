@@ -41,3 +41,9 @@ vim.keymap.set('n', 'td', ':tabclose<CR>')
 ------------- Visual -------------
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
+
+
+------ Fuzzy ------
+vim.keymap.set('n', '<leader>ff', '<cmd>Pick files<CR>')
+vim.keymap.set('n', '<leader>fg', '<cmd>Pick grep_live<CR>')
+vim.keymap.set('n', '<leader>fb', '<cmd>Pick buffers<CR>')
