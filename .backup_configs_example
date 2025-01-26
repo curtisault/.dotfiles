@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# back up ZSH
+\cp -r $HOME/.zshrc $HOME/.zshrc_backup
