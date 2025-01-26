@@ -2,3 +2,5 @@
 
 # back up ZSH
 \cp -r $HOME/.zshrc $HOME/.zshrc_backup
+# write to log
+echo "$(date +"%Y-%m-%d %H:%M:%Ss") - ZSH configuration backed up."
