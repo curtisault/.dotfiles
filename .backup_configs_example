@@ -1,6 +1,15 @@
 #!/bin/bash
 
+
+: '
+Create a cron job to run this script.
+
+Example to run every weekday at 10:00 AM:
+
+```bash
+* 10 * * 1-5 MON-FRI * /path/to/this/script.sh >> /Users/curtisault/.backup_config.log 2>&1
+```
+'
+
 # back up ZSH
-\cp -r $HOME/.zshrc $HOME/.zshrc_backup
-# write to log
-echo "$(date +"%Y-%m-%d %H:%M:%Ss") - ZSH configuration backed up."
+\cp -r $HOME/.zshrc $HOME/.zshrc_backup; echo "$(date +"%Y-%m-%d %H:%M:%Ss") - ZSH configuration backed up."
