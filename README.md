@@ -5,6 +5,9 @@
 Add script and `chmod +x /path/to/this/script.sh`.
 
 Creating a cron job for backing up configs every weekday at 10AM. 
+
+View crontabs with `crontabs -l`.
+
 Edit crontabs with `crontabs -e` and enter the following:
 
 ```bash
