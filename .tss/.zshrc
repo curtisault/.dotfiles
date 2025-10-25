@@ -16,7 +16,6 @@ fi
 # Exports
 export EDITOR=/opt/homebrew/bin/nvim
 export ZSH="$HOME/.oh-my-zsh"
-export OP_PASSWORD=$OP_PASSWORD
 export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 export WASABI_ACCESS_KEY=$WASABI_ACCESS_KEY
