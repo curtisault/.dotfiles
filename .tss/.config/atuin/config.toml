@@ -102,6 +102,7 @@ history_filter = [
   "^cd", # don't save cd commands
   "^ls($| )", # don't save ls commands
   "^la($| )", # don't save la commands
+  "^exit", # don't save exit
 ]
 
 ## prevent commands run with cwd matching any of these regexes from being written
