@@ -13,7 +13,7 @@ My TSS Configs
 
 **Install All**: 
 ```
-brew install git vim neovim tmux fzf ripgrep exa bat fd tldr pass bandwich starship
+brew install git vim neovim tmux fzf ripgrep fd tldr pass bandwich starship
 ```
 - _Git_:         `brew info git`
 - _VIM_:         `brew info vim`
