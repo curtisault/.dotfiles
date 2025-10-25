@@ -1,0 +1,54 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[aws]
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = 'bold blue'
+symbol = '🅰 '
+[aws.region_aliases]
+ap-southeast-2 = 'au'
+us-east-1 = 'va'
+[aws.profile_aliases]
+CompanyGroupFrobozzOnCallAccess = 'Frobozz'
+
+[git_branch]
+symbol = '🌱 '
+truncation_length = 4
+truncation_symbol = ''
+ignore_branches = ['master', 'main']
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+[gleam]
+format = 'via [⭐ $version](bold red) '
+
+[elixir]
+symbol = '🔮 '
+
+[elm]
+format = 'via [ $version](cyan bold) '
+
+[erlang]
+format = 'via [e $version](bold red) '
+
+[ocaml]
+format = 'via [🐪 $version]($style) '
+
+[rust]
+format = 'via [⚙️ $version](red bold)'
+
+[vlang]
+format = 'via [V $version](blue bold) '
